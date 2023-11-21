@@ -2,6 +2,7 @@
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "lib/**/*.jar",
+        "/Users/irisolfermann/Documents/HSRM/1.Semester/Programmieren 1/Uebungsblaetter/UE 4 Selektion/**/*.jar"
     ]
 }

@@ -1,5 +1,13 @@
+import java.util.Scanner;
 public class MinionsGame {
-  public static void main(String[] args) throws Exception {
-    System.out.println("Hello, World was geht ab!");
+  /**
+   * @param args
+   */
+  public static void main(String[] args) {
+    Scanner myObj = new Scanner(System.in);
+    final int MINION = 10;
+    int randomPosition = (int) Math.random()*10+1;
+    int x = myObj.nextInt();
+
 }
 }
