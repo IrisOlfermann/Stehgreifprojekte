@@ -24,6 +24,8 @@ public class MinionsGame {
 
     // Benutzer Optionen
     char drawSide;
+    int drawRange;
+    
 
     System.out.println("Mission without Nobert!");
 
@@ -41,6 +43,14 @@ public class MinionsGame {
     System.out.println("Tipp: Nobert (O) ist am schwächsten");
     System.out.println("Es dürfen maximal 3 Minions pro Runde ziehen");
     System.out.println("Du bist am zug. Von welcher Seite möchtest du wählen?");
+
+    drawSide = StaticScanner.next().charAt(0);
+    System.out.println("Wie viele Minions möchten Sie ziehen?");
+    drawRange =StaticScanner.nextInt(); 
+
+    
+
+
 
   }
 }
