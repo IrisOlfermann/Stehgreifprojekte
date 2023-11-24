@@ -42,9 +42,10 @@ public class MinionsGame {
 
       if(beginner==0){
       System.out.println("Der Computer zieht jetzt eine zufällige Anzahl von Minions.");
-      drawRange = (int) (Math.random()*3+1);
+      drawRange = (int) ((Math.random()*3)+1);
       drawSideComputer = drawRandomNumber(1);
       computerTeamSize += drawRange;
+      System.out.println("Computer hat"+drawRange+"gezogen, von der"+drawSideComputer);
       if (drawSideComputer==0) {
         leftDrawn += drawRange;
       } else {
@@ -89,10 +90,10 @@ public class MinionsGame {
       System.out.print('X'+" ");
     }
     System.out.print(NORBERT+" ");
-    for (int i=0; i<rightSide; i++){
+    for (int i=0; i<(rightSide-rightDrawn); i++){
       System.out.print('X'+" ");
     }
-    for (int i=rightSide; i<rightDrawn; i++){
+    for (int i=(rightSide-rightDrawn); i<(rightDrawn+rightDrawn+1); i++){
       System.out.print('-'+" ");
     }
     System.out.println();
