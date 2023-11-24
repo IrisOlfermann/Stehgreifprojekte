@@ -93,7 +93,7 @@ public class MinionsGame {
     for (int i=0; i<(rightSide-rightDrawn); i++){
       System.out.print('X'+" ");
     }
-    for (int i=(rightSide-rightDrawn); i<(rightDrawn+rightDrawn+1); i++){
+    for (int i=0; i<(rightDrawn); i++){
       System.out.print('-'+" ");
     }
     System.out.println();
