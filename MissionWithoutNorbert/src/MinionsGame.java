@@ -35,10 +35,14 @@ public class MinionsGame {
     int drawSideComputer;
 
     System.out.println("Mission without Nobert!");
-    lineupMinions(leftSide, rightSide, NORBERT, leftDrawn, rightDrawn);
-    if(beginner==0){
-      System.out.print("Der Computer zieht jetzt eine zufällige Anzahl von Minions.");
-      drawRange = drawRandomNumber(MAX_DRAW);
+
+    // Spiel start
+    while(leftDrawn+rightDrawn <= MINION){
+      lineupMinions(leftSide, rightSide, NORBERT, leftDrawn, rightDrawn);
+
+      if(beginner==0){
+      System.out.println("Der Computer zieht jetzt eine zufällige Anzahl von Minions.");
+      drawRange = (int) (Math.random()*3+1);
       drawSideComputer = drawRandomNumber(1);
       computerTeamSize += drawRange;
       if (drawSideComputer==0) {
@@ -62,7 +66,14 @@ public class MinionsGame {
         rightDrawn += drawRange;
       }
     }
-    lineupMinions(leftSide, rightSide, NORBERT, leftDrawn, rightDrawn);
+    //Spieler wechsel
+    if(beginner==0){
+      beginner = 1;
+    }
+    else{
+      beginner = 0;
+    }
+    }
   }
 
   public static int drawRandomNumber(int b){
