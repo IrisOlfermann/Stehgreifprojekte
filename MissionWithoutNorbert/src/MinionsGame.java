@@ -17,6 +17,8 @@ public class MinionsGame {
     int randomPosition = drawRandomNumber(MINION);
     int leftSide = randomPosition;
     int rightSide = MINION - leftSide;
+    int leftDrawn = 0;
+    int rightDrawn = 0;
 
     // Variablen für die Teamgröße und Endausgabe?
     int computerTeamSize =0;
@@ -33,16 +35,16 @@ public class MinionsGame {
     int drawSideComputer;
 
     System.out.println("Mission without Nobert!");
-    lineupMinions(leftSide, rightSide, NORBERT);
+    lineupMinions(leftSide, rightSide, NORBERT, leftDrawn, rightDrawn);
     if(beginner==0){
       System.out.print("Der Computer zieht jetzt eine zufällige Anzahl von Minions.");
       drawRange = drawRandomNumber(MAX_DRAW);
       drawSideComputer = drawRandomNumber(1);
       computerTeamSize += drawRange;
       if (drawSideComputer==0) {
-        leftSide -= drawRange;
+        leftDrawn += drawRange;
       } else {
-        rightSide -= drawRange;
+        rightDrawn += drawRange;
       }
     }
     else{
@@ -55,29 +57,35 @@ public class MinionsGame {
       drawRange =StaticScanner.nextInt();
       userTeamSize += drawRange;
       if (drawSide=='l'||drawSide=='L') {
-        leftSide -= drawRange;
+        leftDrawn += drawRange;
       } else if (drawSide=='r'||drawSide=='R'){
-        rightSide -= drawRange;
+        rightDrawn += drawRange;
       }
     }
-    lineupMinions(leftSide, rightSide, NORBERT);
+    lineupMinions(leftSide, rightSide, NORBERT, leftDrawn, rightDrawn);
   }
 
   public static int drawRandomNumber(int b){
     return (int) (Math.random()*(b+1));
   }
 
-  public static void lineupMinions(int leftSide, int rightSide, char NORBERT){
+  public static void lineupMinions(int leftSide, int rightSide, char NORBERT, int leftDrawn, int rightDrawn){
    // Minions + Nobert aufgestellt!
-    for (int i=0; i<leftSide; i++){
+    for (int i=0; i<leftDrawn; i++){
+      System.out.print('-'+" ");
+    }
+    for (int i=leftDrawn; i<leftSide; i++){
       System.out.print('X'+" ");
     }
     System.out.print(NORBERT+" ");
     for (int i=0; i<rightSide; i++){
       System.out.print('X'+" ");
     }
+    for (int i=rightSide; i<rightDrawn; i++){
+      System.out.print('-'+" ");
+    }
     System.out.println();
-    
+
   }
 
 }
