@@ -71,6 +71,10 @@ public class MinionsGame {
       } else {
         rightDrawn += drawRange;
       }
+      // falls der Computer die letzten Minions zieht, wird userHatNorbert auf true gesetzt
+      if(leftDrawn+rightDrawn==MINION){
+        userHasNorbert= true;
+      }
     }
     // Zug des Nutzers
     else{
@@ -85,16 +89,16 @@ public class MinionsGame {
       // Anzahl wählen
       System.out.println("Wieviele Minions sollen in dein Team? Wähle eine Anzahl von 1-3");
       drawRange = recognizeErrors(StaticScanner.nextInt());
-
+      // wenn die linke und die rechte Seite leer sind, wird Norbert dem Team "hinzugefügt"
+      if((rightSide-rightDrawn)==0 && (leftSide-leftDrawn==0)){
+        userHasNorbert= true;
+      }
       // Addiere die Anzahl der gezogenen Minions zur Teamgröße
       userTeamSize += drawRange;
       if (drawSide=='l') {
         leftDrawn += drawRange;
       } else if (drawSide=='r'){
         rightDrawn += drawRange;
-      }
-      if((rightSide-rightDrawn)==0 && (leftSide-leftDrawn==0)){
-        userHasNorbert= true;
       }
     }
     //Spieler wechsel
@@ -107,6 +111,7 @@ public class MinionsGame {
       }
     // Ausgabe der Team am Ende, funktioniert noch nicht, da wir HasNorbert noch einführen müssen.
     // Computer
+    System.out.println("\n Das Spiel ist vorbei.");
     System.out.println("Das Team des Computers besteht aus : "+computerTeamSize+" Minions.");
     for(int i=0; i<computerTeamSize;i++){
       System.out.print("X ");
@@ -148,7 +153,7 @@ public class MinionsGame {
       System.out.print(NORBERT+" ");
     }
     else{
-      System.out.print("X");
+      System.out.print("-");
     }
     for (int i=0; i<(rightSide-rightDrawn); i++){
       System.out.print('X'+" ");
@@ -156,7 +161,7 @@ public class MinionsGame {
     for (int i=0; i<(rightDrawn); i++){
       System.out.print('-'+" ");
     }
-    System.out.println();
+    System.out.println("\n");
 
   }
  public static int recognizeErrors(int drawRange){
