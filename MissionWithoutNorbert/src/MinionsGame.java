@@ -39,8 +39,8 @@ public class MinionsGame {
     System.out.println("Mission without Nobert!");
 
     // Spiel start
-    while(leftDrawn+rightDrawn <= MINION){
-      lineupMinions(leftSide, rightSide, NORBERT, leftDrawn, rightDrawn);
+    while(!userHasNorbert&&!computerHasNorbert){
+      lineupMinions(leftSide, rightSide, NORBERT, leftDrawn, rightDrawn, computerHasNorbert, userHasNorbert);
       // Zug des Computers
       if(beginner==0){
       System.out.println("Der Computer zieht jetzt eine zufällige Anzahl von Minions.");
@@ -48,6 +48,24 @@ public class MinionsGame {
       drawSideComputer = drawRandomNumber(1);
       computerTeamSize += drawRange;
       System.out.println("Computer hat "+drawRange+" gezogen, von der "+drawSideComputer);
+      // wir wollen, dass der Computer die Seite wechselt, wenn auf einer Seite keine Minions mehr sind.
+      if ((leftSide-leftDrawn)==0) {
+        drawSideComputer = 1; // wechselt auf rechts
+        if(drawRange>(rightSide-rightDrawn)){
+        drawRange = (rightSide-rightDrawn);
+        computerHasNorbert = true;
+      }
+      }
+      else if((rightSide-rightDrawn)==0){
+        drawSideComputer = 0; // wechselt auf links
+        if(drawRange>(leftSide-leftDrawn)){
+        drawRange = (leftSide-leftDrawn);
+        computerHasNorbert = true;
+      }
+
+      }
+      // zieht wenn weniger da sind als die zufällige Range nur noch soviele wie da sind und Norbert.
+      //addiert die Anzahl, die der Computer gezogen hat zur Gesamtanzahl von gezogenen Links oder Rechts
       if (drawSideComputer==0) {
         leftDrawn += drawRange;
       } else {
@@ -75,6 +93,9 @@ public class MinionsGame {
       } else if (drawSide=='r'){
         rightDrawn += drawRange;
       }
+      if((rightSide-rightDrawn)==0 && (leftSide-leftDrawn==0)){
+        userHasNorbert= true;
+      }
     }
     //Spieler wechsel
     if(beginner==0){
@@ -83,25 +104,26 @@ public class MinionsGame {
     else{
       beginner = 0;
     }
-    }
+      }
     // Ausgabe der Team am Ende, funktioniert noch nicht, da wir HasNorbert noch einführen müssen.
     // Computer
     System.out.println("Das Team des Computers besteht aus : "+computerTeamSize+" Minions.");
     for(int i=0; i<computerTeamSize;i++){
-      System.out.print("X");
-      if(computerHasNorbert==true){
-      System.out.println("O");
-      }
+      System.out.print("X ");
+    }
+    if(computerHasNorbert){
+      System.out.println("O ");
     }
      System.out.println();
     // Nutzer
         System.out.println("Dein Team besteht aus : "+userTeamSize+" Minions.");
     for(int i=0; i<userTeamSize;i++){
-      System.out.print("X");
-      if(userHasNorbert==true){
-      System.out.print("O");
-      }
+      System.out.print("X ");
     }
+    if(userHasNorbert){
+      System.out.print("O ");
+      }
+      System.out.println();
     if (userHasNorbert) {
       System.out.println("Da du Norbert in dein Team gezogen hast, hast du leider verloren.");
     } else if(computerHasNorbert){
@@ -114,7 +136,7 @@ public class MinionsGame {
     return (int) (Math.random()*(b+1));
   }
 
-  public static void lineupMinions(int leftSide, int rightSide, char NORBERT, int leftDrawn, int rightDrawn){
+  public static void lineupMinions(int leftSide, int rightSide, char NORBERT, int leftDrawn, int rightDrawn, boolean computerHasNorbert, boolean userHasNorbert){
    // Minions + Nobert aufgestellt!
     for (int i=0; i<leftDrawn; i++){
       System.out.print('-'+" ");
@@ -122,7 +144,12 @@ public class MinionsGame {
     for (int i=leftDrawn; i<leftSide; i++){
       System.out.print('X'+" ");
     }
-    System.out.print(NORBERT+" ");
+    if(computerHasNorbert==false&&userHasNorbert==false){
+      System.out.print(NORBERT+" ");
+    }
+    else{
+      System.out.print("X");
+    }
     for (int i=0; i<(rightSide-rightDrawn); i++){
       System.out.print('X'+" ");
     }
