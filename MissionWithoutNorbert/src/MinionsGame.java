@@ -1,10 +1,9 @@
 import java.util.Scanner;
-
 public class MinionsGame {
   /**
    * @param args
-   * param steht für Parameter und args für Argumente.
-   * Katze miau
+   *
+   *
    */
   public static void main(String[] args) {
     Scanner StaticScanner = new Scanner(System.in);
@@ -43,11 +42,10 @@ public class MinionsGame {
       lineupMinions(leftSide, rightSide, NORBERT, leftDrawn, rightDrawn, computerHasNorbert, userHasNorbert);
       // Zug des Computers
       if(beginner==0){
-      System.out.println("Der Computer zieht jetzt eine zufällige Anzahl von Minions.");
       drawRange = (int) ((Math.random()*MAX_DRAW)+1);
       drawSideComputer = drawRandomNumber(1);
       computerTeamSize += drawRange;
-      System.out.println("Computer hat "+drawRange+" gezogen, von der "+drawSideComputer);
+      // Ausgabe für den Nutzer, was der Computer gezogen hat.
       // wir wollen, dass der Computer die Seite wechselt, wenn auf einer Seite keine Minions mehr sind.
       if ((leftSide-leftDrawn)==0) {
         drawSideComputer = 1; // wechselt auf rechts
@@ -62,7 +60,9 @@ public class MinionsGame {
         drawRange = (leftSide-leftDrawn);
         computerHasNorbert = true;
       }
-
+      }
+      else if(leftDrawn+rightDrawn==MINION){
+        computerHasNorbert= true;
       }
       // zieht wenn weniger da sind als die zufällige Range nur noch soviele wie da sind und Norbert.
       //addiert die Anzahl, die der Computer gezogen hat zur Gesamtanzahl von gezogenen Links oder Rechts
@@ -72,10 +72,16 @@ public class MinionsGame {
         rightDrawn += drawRange;
       }
       // falls der Computer die letzten Minions zieht, wird userHatNorbert auf true gesetzt
-      if(leftDrawn+rightDrawn==MINION){
+      if(leftDrawn+rightDrawn==MINION &&!computerHasNorbert){
         userHasNorbert= true;
       }
+      if (drawSideComputer==0) {
+        System.out.println("Computer zieht "+drawRange+" Minions von der linken Seite.");
+      }  else if (drawSideComputer==1) {
+        System.out.println("Computer zieht "+drawRange+" Minions von der rechten Seite.");
+      }
     }
+
     // Zug des Nutzers
     else{
       System.out.println("Du bist am Zug.");
@@ -109,7 +115,7 @@ public class MinionsGame {
       beginner = 0;
     }
       }
-    // Ausgabe der Team am Ende, funktioniert noch nicht, da wir HasNorbert noch einführen müssen.
+    // Spielende/ Ausgabe der Teams
     // Computer
     System.out.println("\n Das Spiel ist vorbei.");
     System.out.println("Das Team des Computers besteht aus : "+computerTeamSize+" Minions.");

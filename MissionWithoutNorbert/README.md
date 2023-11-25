@@ -1,18 +1,7 @@
-## Getting Started
-
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
-
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+TODO:
+falsche Datentypen bei der Eingabe des Nutzers abfangen
+Ändern, dass der Nutzer auch mutwillig Norbert ziehen kann
+Abfangen, dass der Nutzer nicht mehr Minions ziehen kann, als noch da sind (so wie beim Computer)
+Anzeige ändern (Kreise für Minions)
+Evtl coole Anzeige, am Spielende (vielleicht Partyemojis, falls Nutzer gewonnen hat?)
+Optional noch überlegen, ob andere Teile des Programms ausgelagert werden sollten (glaube aber nicht sinnvoll )
