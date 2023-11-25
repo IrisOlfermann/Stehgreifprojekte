@@ -45,7 +45,7 @@ public class MinionsGame {
       drawRange = (int) ((Math.random()*3)+1);
       drawSideComputer = drawRandomNumber(1);
       computerTeamSize += drawRange;
-      System.out.println("Computer hat"+drawRange+"gezogen, von der"+drawSideComputer);
+      System.out.println("Computer hat "+drawRange+" gezogen, von der "+drawSideComputer);
       if (drawSideComputer==0) {
         leftDrawn += drawRange;
       } else {
@@ -55,8 +55,8 @@ public class MinionsGame {
     // Zug des Nutzers
     else{
       System.out.println("Du bist am Zug.");
-      System.out.println("Wählen deine stärkste Mannschaft!");
-      System.out.println("Tipp: Nobert (O) ist am schwächsten");
+      System.out.println("Stelle dein Team zusammen!");
+      System.out.println("Tipp: Wenn du Norbert in dein Team wählst, verlierst du.");
 
       // Seite wählen
       System.out.println("Von welcher Seite l)inks oder r)echts möchtest du wählen?");
