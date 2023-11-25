@@ -26,8 +26,8 @@ public class MinionsGame {
 
 
     // Benutzer Optionen
-    char drawSide;
-    int drawRange;
+    char drawSide='l';
+    int drawRange=0;
 
     // Zufallszahl wer beginnt. 0 für Computer, 1 für Nutzer
     int beginner = drawRandomNumber(1);
@@ -39,7 +39,7 @@ public class MinionsGame {
     // Spiel start
     while(leftDrawn+rightDrawn <= MINION){
       lineupMinions(leftSide, rightSide, NORBERT, leftDrawn, rightDrawn);
-
+      // Zug des Computers
       if(beginner==0){
       System.out.println("Der Computer zieht jetzt eine zufällige Anzahl von Minions.");
       drawRange = (int) ((Math.random()*3)+1);
@@ -52,14 +52,20 @@ public class MinionsGame {
         rightDrawn += drawRange;
       }
     }
+    // Zug des Nutzers
     else{
-      System.out.println("Wählen Sie ihre stärkste Mannschaft!");
+      System.out.println("Du bist am Zug.");
+      System.out.println("Wählen deine stärkste Mannschaft!");
       System.out.println("Tipp: Nobert (O) ist am schwächsten");
-      System.out.println("Es dürfen maximal 3 Minions pro Runde ziehen");
-      System.out.println("Du bist am zug. Von welcher Seite möchtest du wählen?");
+      // Seite wählen
+      System.out.println("Von welcher Seite l)inks oder r)echts möchtest du wählen?");
       drawSide = StaticScanner.next().charAt(0);
-      System.out.println("Wie viele Minions möchten Sie ziehen?");
-      drawRange =StaticScanner.nextInt();
+
+      // Anzahl wählen
+      System.out.println("Wieviele Minions sollen in dein Team? Wähle eine Anzahl von 1-3");
+      drawRange = recognizeErrors(StaticScanner.nextInt());
+
+      // Addiere die Anzahl der gezogenen Minions zur Teamgröße
       userTeamSize += drawRange;
       if (drawSide=='l'||drawSide=='L') {
         leftDrawn += drawRange;
@@ -99,5 +105,19 @@ public class MinionsGame {
     System.out.println();
 
   }
-
+ public static int recognizeErrors(int drawRange){
+  // auch hier muss ein StaticScanner Objekt erzeugt werden, um die Methode zu verwenden.
+    Scanner StaticScanner = new Scanner(System.in);
+    boolean validInput= false;
+    while(validInput!= true){
+        if (drawRange==1 || drawRange ==2 || drawRange==3) {
+          validInput = true;
+        }
+        else{
+          System.out.println("Ungültige Eingabe. Wähle eine Zahl zwischen 1-3.");
+          drawRange =StaticScanner.nextInt();
+        }
+    }
+  return drawRange;
+ }
 }
