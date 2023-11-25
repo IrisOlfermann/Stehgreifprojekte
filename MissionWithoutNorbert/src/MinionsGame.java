@@ -23,6 +23,8 @@ public class MinionsGame {
     // Variablen für die Teamgröße und Endausgabe?
     int computerTeamSize =0;
     int userTeamSize=0;
+    boolean computerHasNorbert =false;
+    boolean userHasNorbert=false;
 
 
     // Benutzer Optionen
@@ -42,7 +44,7 @@ public class MinionsGame {
       // Zug des Computers
       if(beginner==0){
       System.out.println("Der Computer zieht jetzt eine zufällige Anzahl von Minions.");
-      drawRange = (int) ((Math.random()*3)+1);
+      drawRange = (int) ((Math.random()*MAX_DRAW)+1);
       drawSideComputer = drawRandomNumber(1);
       computerTeamSize += drawRange;
       System.out.println("Computer hat "+drawRange+" gezogen, von der "+drawSideComputer);
@@ -82,6 +84,30 @@ public class MinionsGame {
       beginner = 0;
     }
     }
+    // Ausgabe der Team am Ende, funktioniert noch nicht, da wir HasNorbert noch einführen müssen.
+    // Computer
+    System.out.println("Das Team des Computers besteht aus : "+computerTeamSize+" Minions.");
+    for(int i=0; i<computerTeamSize;i++){
+      System.out.print("X");
+      if(computerHasNorbert==true){
+      System.out.println("O");
+      }
+    }
+     System.out.println();
+    // Nutzer
+        System.out.println("Dein Team besteht aus : "+userTeamSize+" Minions.");
+    for(int i=0; i<userTeamSize;i++){
+      System.out.print("X");
+      if(userHasNorbert==true){
+      System.out.print("O");
+      }
+    }
+    if (userHasNorbert) {
+      System.out.println("Da du Norbert in dein Team gezogen hast, hast du leider verloren.");
+    } else if(computerHasNorbert){
+      System.out.println("Der Computer hat Norbert in sein Team gewählt, also hast du gewonnen :)");
+    }
+    System.out.println();
   }
 
   public static int drawRandomNumber(int b){
