@@ -57,9 +57,10 @@ public class MinionsGame {
       System.out.println("Du bist am Zug.");
       System.out.println("Wählen deine stärkste Mannschaft!");
       System.out.println("Tipp: Nobert (O) ist am schwächsten");
+
       // Seite wählen
       System.out.println("Von welcher Seite l)inks oder r)echts möchtest du wählen?");
-      drawSide = StaticScanner.next().charAt(0);
+      drawSide = recognizeErrors(StaticScanner.next().charAt(0));
 
       // Anzahl wählen
       System.out.println("Wieviele Minions sollen in dein Team? Wähle eine Anzahl von 1-3");
@@ -67,9 +68,9 @@ public class MinionsGame {
 
       // Addiere die Anzahl der gezogenen Minions zur Teamgröße
       userTeamSize += drawRange;
-      if (drawSide=='l'||drawSide=='L') {
+      if (drawSide=='l') {
         leftDrawn += drawRange;
-      } else if (drawSide=='r'||drawSide=='R'){
+      } else if (drawSide=='r'){
         rightDrawn += drawRange;
       }
     }
@@ -119,5 +120,21 @@ public class MinionsGame {
         }
     }
   return drawRange;
+ }
+ // Methode recognizeErrors überladen für Datentyp Char
+  public static char recognizeErrors(char drawSide){
+  // auch hier muss ein StaticScanner Objekt erzeugt werden, um die Methode zu verwenden.
+    Scanner StaticScanner = new Scanner(System.in);
+    boolean validInput= false;
+    while(validInput!= true){
+        if (drawSide=='l' || drawSide =='r') {
+          validInput = true;
+        }
+        else{
+          System.out.println("Ungültige Eingabe. Bitte gib entweder ein l für links oder ein r für rechts ein.");
+          drawSide =StaticScanner.next().charAt(0);
+        }
+    }
+  return drawSide;
  }
 }
