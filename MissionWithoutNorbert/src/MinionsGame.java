@@ -94,7 +94,7 @@ public class MinionsGame {
 
       // Anzahl wählen
       System.out.println("Wieviele Minions sollen in dein Team? Wähle eine Anzahl von 1-3");
-      drawRange = recognizeErrors();
+      drawRange = recognizeErrors(leftSide,leftDrawn,rightSide,rightDrawn,userHasNorbert);
       // wenn die linke und die rechte Seite leer sind, wird Norbert dem Team "hinzugefügt"
       if((rightSide-rightDrawn)==0 && (leftSide-leftDrawn==0)){
         userHasNorbert= true;
@@ -170,22 +170,22 @@ public class MinionsGame {
     System.out.println("\n");
 
   }
- public static int recognizeErrors(){
+  // bei Eingabe der DrawRange Fehler abfangen
+ public static int recognizeErrors(int leftSide, int leftDrawn, int rightSide, int rightDrawn, boolean userHasNorbert){
   // auch hier muss ein StaticScanner Objekt erzeugt werden, um die Methode zu verwenden.
     Scanner StaticScanner = new Scanner(System.in);
     boolean validInput= false;
     int drawNumber=0;
     String drawRange = StaticScanner.nextLine();
     while(validInput!= true){
-
+      // fängt ab, falls ein falscher Datentyp eingegeben wird.
       try {
-
           drawNumber = Integer.parseInt(drawRange);
           System.out.println("Eingegebene Zahl: " + drawNumber);
       } catch (NumberFormatException e) {
           System.out.println("Die Eingabe ist keine Zahl. Bitte eine Zahl zwischen 1-3 eingeben.");
       }
-
+// Wenn klar ist, dass es eine Zahl ist, wird geprüft, ob sie zwischen 1-3 liegt.
         if (drawNumber==1 || drawNumber ==2 || drawNumber==3) {
           validInput = true;
         }
@@ -194,8 +194,20 @@ public class MinionsGame {
           drawRange =StaticScanner.nextLine();
         }
     }
-  return drawNumber;
+          // Wenn weniger da sind als der Nutzer ziehen will, Anzahl die gezogen wird automatisch auf Rest
+        if(drawNumber>(rightSide-rightDrawn)){
+        drawNumber = (rightSide-rightDrawn);
+        userHasNorbert = true;
+        System.out.print("Du hast extra Norbert gezogen. Bist du dumm?!");
+      }
+
+        if(drawNumber>(leftSide-leftDrawn)){
+        drawNumber = (leftSide-leftDrawn);
+        userHasNorbert = true;
+        System.out.print("Du hast extra Norbert gezogen. Bist du dumm?!");
  }
+ return drawNumber;
+}
  // Methode recognizeErrors überladen für Datentyp Char
   public static char recognizeErrors(char drawSide){
   // auch hier muss ein StaticScanner Objekt erzeugt werden, um die Methode zu verwenden.
