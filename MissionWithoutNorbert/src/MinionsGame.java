@@ -94,7 +94,7 @@ public class MinionsGame {
 
       // Anzahl wählen
       System.out.println("Wieviele Minions sollen in dein Team? Wähle eine Anzahl von 1-3");
-      drawRange = recognizeErrors(StaticScanner.nextInt());
+      drawRange = recognizeErrors();
       // wenn die linke und die rechte Seite leer sind, wird Norbert dem Team "hinzugefügt"
       if((rightSide-rightDrawn)==0 && (leftSide-leftDrawn==0)){
         userHasNorbert= true;
@@ -170,20 +170,31 @@ public class MinionsGame {
     System.out.println("\n");
 
   }
- public static int recognizeErrors(int drawRange){
+ public static int recognizeErrors(){
   // auch hier muss ein StaticScanner Objekt erzeugt werden, um die Methode zu verwenden.
     Scanner StaticScanner = new Scanner(System.in);
     boolean validInput= false;
+    int drawNumber=0;
+    String drawRange = StaticScanner.nextLine();
     while(validInput!= true){
-        if (drawRange==1 || drawRange ==2 || drawRange==3) {
+
+      try {
+
+          drawNumber = Integer.parseInt(drawRange);
+          System.out.println("Eingegebene Zahl: " + drawNumber);
+      } catch (NumberFormatException e) {
+          System.out.println("Die Eingabe ist keine Zahl. Bitte eine Zahl zwischen 1-3 eingeben.");
+      }
+
+        if (drawNumber==1 || drawNumber ==2 || drawNumber==3) {
           validInput = true;
         }
         else{
           System.out.println("Ungültige Eingabe. Wähle eine Zahl zwischen 1-3.");
-          drawRange =StaticScanner.nextInt();
+          drawRange =StaticScanner.nextLine();
         }
     }
-  return drawRange;
+  return drawNumber;
  }
  // Methode recognizeErrors überladen für Datentyp Char
   public static char recognizeErrors(char drawSide){
