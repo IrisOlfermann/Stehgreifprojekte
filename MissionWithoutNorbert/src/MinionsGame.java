@@ -74,11 +74,13 @@ public class MinionsGame {
       }
       // zieht wenn weniger da sind als die zufällige Range nur noch soviele wie da sind und Norbert.
       //addiert die Anzahl, die der Computer gezogen hat zur Gesamtanzahl von gezogenen Links oder Rechts
+      if(!computerHasNorbert){
       if (drawSideComputer==0) {
         leftDrawn += drawRange;
       } else {
         rightDrawn += drawRange;
       }
+    }
       // falls der Computer die letzten Minions zieht, wird userHatNorbert auf true gesetzt
       if(leftDrawn+rightDrawn==MINION &&!computerHasNorbert){
         userHasNorbert= true;
@@ -158,11 +160,16 @@ public class MinionsGame {
     }else{
       System.out.println("Das Team des Computers besteht aus : "+computerTeamSize+" Minions.");
     }
-    for(int i=0; i<computerTeamSize;i++){
+    if(computerHasNorbert){
+      for(int i=0; i<computerTeamSize-1;i++){
       System.out.print("X ");
     }
-    if(computerHasNorbert){
       System.out.println("O ");
+    }
+    else{
+      for(int i=0; i<computerTeamSize;i++){
+      System.out.print("X ");
+    }
     }
      System.out.println();
     // Nutzer
