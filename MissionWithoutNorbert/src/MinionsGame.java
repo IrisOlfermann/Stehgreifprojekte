@@ -35,7 +35,15 @@ public class MinionsGame {
     // o ist links, 1 ist rechts
     int drawSideComputer;
 
-    System.out.println("Mission without Nobert!");
+    System.out.println("\nMission without Nobert!\n");
+    System.out.println("Es wird zufällig ausgelost, wer anfangen darf.");
+    if(beginner==0){
+      System.out.println("Der Computer wurde ausgelost und darf anfangen.\n");
+    }
+    else{
+      System.out.println("Du wurdest ausgelost und darfst anfangen.\n");
+    }
+    System.out.print("Hier ist die zufällig ausgeloste Reihenfolge der Minions:");
 
     // Spiel start
     while(!userHasNorbert&&!computerHasNorbert){
