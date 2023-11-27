@@ -98,12 +98,12 @@ public class MinionsGame {
         if(drawRange>(rightSide-rightDrawn)){
         drawRange = (rightSide-rightDrawn);
         userHasNorbert = true;
-        System.out.print("Du hast extra Norbert gezogen. Bist du dumm?!");
+        System.out.print("Ups, du hast extra Norbert gezogen.");
       }
         if(drawRange>(leftSide-leftDrawn)){
         drawRange = (leftSide-leftDrawn);
         userHasNorbert = true;
-        System.out.print("Du hast extra Norbert gezogen. Bist du dumm?!");
+        System.out.print("Ups, du hast extra Norbert gezogen.");
  }
       // wenn die linke und die rechte Seite leer sind, wird Norbert dem Team "hinzugefügt"
       if((rightSide-rightDrawn)==0 && (leftSide-leftDrawn==0)){
