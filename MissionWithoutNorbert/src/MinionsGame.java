@@ -93,7 +93,7 @@ public class MinionsGame {
       System.out.println("Du bist am Zug.");
       System.out.println("Stelle dein Team zusammen!");
       System.out.println();
-      System.out.println("Tipp: Wenn du Norbert in dein Team wählst, verlierst du.");
+      System.out.println("Tipp: Wenn du Norbert " + NORBERT + " in dein Team wählst, verlierst du.");
       System.out.println();
 
       // Seite wählen
