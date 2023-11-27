@@ -43,7 +43,7 @@ public class MinionsGame {
     else{
       System.out.println("Du wurdest ausgelost und darfst anfangen.\n");
     }
-    System.out.print("Hier ist die zufällig ausgeloste Reihenfolge der Minions:");
+    System.out.print("Hier ist die zufällig ausgeloste Reihenfolge der Minions:\n");
 
     // Spiel start
     while(!userHasNorbert&&!computerHasNorbert){
@@ -83,10 +83,27 @@ public class MinionsGame {
       if(leftDrawn+rightDrawn==MINION &&!computerHasNorbert){
         userHasNorbert= true;
       }
+      //Ausgabe für den Nutzer, wieviele Minions der Computer zieht.
       if (drawSideComputer==0) {
-        System.out.println("Computer zieht "+drawRange+" Minions von der linken Seite.");
+        if(drawRange==1){
+          System.out.println("Computer zieht einen Minion von der linken Seite.");
+        }
+        else if(drawRange>1){
+          System.out.println("Computer zieht "+drawRange+" Minions von der linken Seite.");
+        }
+        else if(drawRange==0){
+          System.out.println("Computer zieht Norbert.");
+        }
       }  else if (drawSideComputer==1) {
-        System.out.println("Computer zieht "+drawRange+" Minions von der rechten Seite.");
+          if(drawRange==1){
+          System.out.println("Computer zieht einen Minion von der rechten Seite.");
+          }
+          else if(drawRange>1){
+          System.out.println("Computer zieht "+drawRange+" Minions von der rechten Seite.");
+          }
+          else if(drawRange==0){
+          System.out.println("Computer zieht Norbert.");
+          }
       }
     }
 
@@ -106,12 +123,12 @@ public class MinionsGame {
         if((drawRange>(rightSide-rightDrawn))&& drawSide=='r'){
         drawRange = (rightSide-rightDrawn);
         userHasNorbert = true;
-        System.out.print("Ups, du hast extra Norbert gezogen.");
+        System.out.print("Ups, du hast extra Norbert gezogen.\n");
       }
         else if((drawRange>(leftSide-leftDrawn))&& drawSide=='l'){
         drawRange = (leftSide-leftDrawn);
         userHasNorbert = true;
-        System.out.print("Ups, du hast extra Norbert gezogen.");
+        System.out.print("Ups, du hast extra Norbert gezogen.\n");
  }
       // wenn die linke und die rechte Seite leer sind, wird Norbert dem Team "hinzugefügt"
       if((rightSide-rightDrawn)==0 && (leftSide-leftDrawn==0)){
@@ -135,8 +152,12 @@ public class MinionsGame {
       }
     // Spielende/ Ausgabe der Teams
     // Computer
-    System.out.println("\n Das Spiel ist vorbei.");
-    System.out.println("Das Team des Computers besteht aus : "+computerTeamSize+" Minions.");
+    System.out.println("\nDas Spiel ist vorbei.");
+    if(computerTeamSize==1){
+      System.out.println("Das Team des Computers besteht aus einem Minion.");
+    }else{
+      System.out.println("Das Team des Computers besteht aus : "+computerTeamSize+" Minions.");
+    }
     for(int i=0; i<computerTeamSize;i++){
       System.out.print("X ");
     }
@@ -145,7 +166,18 @@ public class MinionsGame {
     }
      System.out.println();
     // Nutzer
-        System.out.println("Dein Team besteht aus : "+userTeamSize+" Minions.");
+    if(userTeamSize==1){
+      System.out.println("Dein Team besteht aus einem Minion und Norbert.");
+    }
+    else if(userTeamSize>1&&userHasNorbert){
+      System.out.println("Dein Team besteht aus : "+userTeamSize+" Minions und Norbert.");
+    }
+    else if(userTeamSize>1&&computerHasNorbert){
+      System.out.println("Dein Team besteht aus : "+userTeamSize+" Minions.");
+    }
+    else if(userTeamSize==0&&userHasNorbert){
+      System.out.println("Dein Team besteht aus Norbert.");
+    }
     for(int i=0; i<userTeamSize;i++){
       System.out.print("X ");
     }
@@ -199,7 +231,6 @@ public class MinionsGame {
       // fängt ab, falls ein falscher Datentyp eingegeben wird.
       try {
           drawNumber = Integer.parseInt(drawRange);
-          System.out.println("Eingegebene Zahl: " + drawNumber);
       } catch (NumberFormatException e) {
           System.out.println("Die Eingabe ist keine Zahl. Bitte eine Zahl zwischen 1-3 eingeben.");
       }
