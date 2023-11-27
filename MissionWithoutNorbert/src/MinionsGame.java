@@ -95,12 +95,12 @@ public class MinionsGame {
       System.out.println("Wieviele Minions sollen in dein Team? Wähle eine Anzahl von 1-3");
       drawRange = recognizeErrors();
         // Wenn weniger da sind als der Nutzer ziehen will, Anzahl die gezogen wird automatisch auf Rest
-        if(drawRange>(rightSide-rightDrawn)){
+        if((drawRange>(rightSide-rightDrawn))&& drawSide=='r'){
         drawRange = (rightSide-rightDrawn);
         userHasNorbert = true;
         System.out.print("Ups, du hast extra Norbert gezogen.");
       }
-        if(drawRange>(leftSide-leftDrawn)){
+        else if((drawRange>(leftSide-leftDrawn))&& drawSide=='l'){
         drawRange = (leftSide-leftDrawn);
         userHasNorbert = true;
         System.out.print("Ups, du hast extra Norbert gezogen.");
