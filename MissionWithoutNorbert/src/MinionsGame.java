@@ -6,11 +6,16 @@ public class MinionsGame {
    *
    */
   public static void main(String[] args) {
+    // Um die Emoji‘s verwenden zu können
+    System.setProperty("file.encoding", "UTF-8");
+
     Scanner StaticScanner = new Scanner(System.in);
 
     final int MINION = 10;
-    final char NORBERT = 'O';
+    final String NORBERT = "🔴";
     final int MAX_DRAW = 3;
+
+
 
     // Variablen um die Position zu bestimmen
     int randomPosition = drawRandomNumber(MINION);
@@ -34,8 +39,9 @@ public class MinionsGame {
     int beginner = drawRandomNumber(1);
     // o ist links, 1 ist rechts
     int drawSideComputer;
-
+    System.out.println();
     System.out.println("Mission without Nobert!");
+    System.out.println();
 
     // Spiel start
     while(!userHasNorbert&&!computerHasNorbert){
@@ -86,13 +92,17 @@ public class MinionsGame {
     else{
       System.out.println("Du bist am Zug.");
       System.out.println("Stelle dein Team zusammen!");
+      System.out.println();
       System.out.println("Tipp: Wenn du Norbert in dein Team wählst, verlierst du.");
+      System.out.println();
 
       // Seite wählen
+      System.out.println();
       System.out.println("Von welcher Seite l)inks oder r)echts möchtest du wählen?");
       drawSide = recognizeErrors(StaticScanner.next().charAt(0));
 
       // Anzahl wählen
+      System.out.println();
       System.out.println("Wieviele Minions sollen in dein Team? Wähle eine Anzahl von 1-3");
       drawRange = recognizeErrors();
       // wenn die linke und die rechte Seite leer sind, wird Norbert dem Team "hinzugefügt"
@@ -118,27 +128,32 @@ public class MinionsGame {
     // Spielende/ Ausgabe der Teams
     // Computer
     System.out.println("\n Das Spiel ist vorbei.");
-    System.out.println("Das Team des Computers besteht aus : "+computerTeamSize+" Minions.");
+    System.out.println();
+    System.out.println("Das Team des Computers besteht aus : "+computerTeamSize+" Minion.");
     for(int i=0; i<computerTeamSize;i++){
-      System.out.print("X ");
+      System.out.print("🟡"+" ");
     }
     if(computerHasNorbert){
-      System.out.println("O ");
+      System.out.println(NORBERT+" ");
     }
-     System.out.println();
+    System.out.println();
     // Nutzer
-        System.out.println("Dein Team besteht aus : "+userTeamSize+" Minions.");
+        System.out.println("Dein Team besteht aus : "+userTeamSize+" Minion.");
     for(int i=0; i<userTeamSize;i++){
-      System.out.print("X ");
+      System.out.print("🟡"+" ");
     }
     if(userHasNorbert){
-      System.out.print("O ");
+      System.out.print(NORBERT+" ");
       }
       System.out.println();
     if (userHasNorbert) {
-      System.out.println("Da du Norbert in dein Team gezogen hast, hast du leider verloren.");
+      System.out.println();
+      System.out.println("Da du Norbert 🔴 in dein Team gezogen hast, hast du leider verloren 😭");
+      System.out.println();
     } else if(computerHasNorbert){
-      System.out.println("Der Computer hat Norbert in sein Team gewählt, also hast du gewonnen :)");
+      System.out.println();
+      System.out.println("🎉 Der Computer hat Norbert in sein Team gewählt, also hast du gewonnen!!! 🥳");
+      System.out.println();
     }
     System.out.println();
   }
@@ -147,30 +162,31 @@ public class MinionsGame {
     return (int) (Math.random()*(b+1));
   }
 
-  public static void lineupMinions(int leftSide, int rightSide, char NORBERT, int leftDrawn, int rightDrawn, boolean computerHasNorbert, boolean userHasNorbert){
+  public static void lineupMinions(int leftSide, int rightSide, String NORBERT, int leftDrawn, int rightDrawn, boolean computerHasNorbert, boolean userHasNorbert){
    // Minions + Nobert aufgestellt!
     for (int i=0; i<leftDrawn; i++){
-      System.out.print('-'+" ");
+      System.out.print("🕳️  ");
     }
     for (int i=leftDrawn; i<leftSide; i++){
-      System.out.print('X'+" ");
+      System.out.print("🟡"+" ");
     }
     if(computerHasNorbert==false&&userHasNorbert==false){
       System.out.print(NORBERT+" ");
     }
     else{
-      System.out.print("-");
+      System.out.print("🕳️  ");
     }
     for (int i=0; i<(rightSide-rightDrawn); i++){
-      System.out.print('X'+" ");
+      System.out.print("🟡"+" ");
     }
     for (int i=0; i<(rightDrawn); i++){
-      System.out.print('-'+" ");
+      System.out.print("🕳️  ");
     }
     System.out.println("\n");
+    System.out.println();
 
   }
- public static int recognizeErrors(){
+  public static int recognizeErrors(){
   // auch hier muss ein StaticScanner Objekt erzeugt werden, um die Methode zu verwenden.
     Scanner StaticScanner = new Scanner(System.in);
     boolean validInput= false;
@@ -181,6 +197,7 @@ public class MinionsGame {
       try {
 
           drawNumber = Integer.parseInt(drawRange);
+          System.out.println();
           System.out.println("Eingegebene Zahl: " + drawNumber);
       } catch (NumberFormatException e) {
           System.out.println("Die Eingabe ist keine Zahl. Bitte eine Zahl zwischen 1-3 eingeben.");
@@ -195,7 +212,7 @@ public class MinionsGame {
         }
     }
   return drawNumber;
- }
+  }
  // Methode recognizeErrors überladen für Datentyp Char
   public static char recognizeErrors(char drawSide){
   // auch hier muss ein StaticScanner Objekt erzeugt werden, um die Methode zu verwenden.
@@ -211,5 +228,5 @@ public class MinionsGame {
         }
     }
   return drawSide;
- }
+  }
 }
