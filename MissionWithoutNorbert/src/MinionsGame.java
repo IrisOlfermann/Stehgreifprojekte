@@ -82,9 +82,9 @@ public class MinionsGame {
         userHasNorbert= true;
       }
       if (drawSideComputer==0) {
-        System.out.println("Computer zieht "+drawRange+" Minions von der linken Seite.");
+        System.out.println("🤖: Computer zieht "+drawRange+" Minions von der linken Seite.");
       }  else if (drawSideComputer==1) {
-        System.out.println("Computer zieht "+drawRange+" Minions von der rechten Seite.");
+        System.out.println("🤖: Computer zieht "+drawRange+" Minions von der rechten Seite.");
       }
     }
 
@@ -127,7 +127,8 @@ public class MinionsGame {
       }
     // Spielende/ Ausgabe der Teams
     // Computer
-    System.out.println("\n Das Spiel ist vorbei.");
+    System.out.println();
+    System.out.println("⬇️ ⬇️ ⬇️  Das Spiel ist vorbei. ⬇️ ⬇️ ⬇️");
     System.out.println();
     System.out.println("Das Team des Computers besteht aus : "+computerTeamSize+" Minion.");
     for(int i=0; i<computerTeamSize;i++){
@@ -207,7 +208,8 @@ public class MinionsGame {
           validInput = true;
         }
         else{
-          System.out.println("Ungültige Eingabe. Wähle eine Zahl zwischen 1-3.");
+          System.out.println();
+          System.out.println("⛔ Ungültige Eingabe. Wähle eine Zahl zwischen 1-3.");
           drawRange =StaticScanner.nextLine();
         }
     }
