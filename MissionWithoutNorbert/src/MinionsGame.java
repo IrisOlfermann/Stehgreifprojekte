@@ -39,6 +39,9 @@ public class MinionsGame {
     int drawSideComputer;
 
     System.out.println("\nMission without Nobert " + NORBERT +  "!\n");
+    System.out.println("In dem Spiel geht es darum, aus einer zufälligen zusammengestellten Reihe aus Minions und Norbert Teams zu wählen.");
+    System.out.println("Dabei verlierst du, wenn du Norbert in dein Team ziehst.");
+    System.out.println("Es wird immer abwechselnd bis zu 3 Minions gezogen.");
     System.out.println("Es wird zufällig ausgelost, wer anfangen darf.");
     if(beginner==0){
       System.out.println("Der Computer wurde ausgelost und darf anfangen.\n");
@@ -103,7 +106,6 @@ public class MinionsGame {
     else{
       System.out.println("Du bist am Zug.");
       System.out.println("Stelle dein Team zusammen!");
-      System.out.println("Tipp: Wenn du Norbert in dein Team wählst, verlierst du.");
 
       // Seite wählen
       System.out.println();
