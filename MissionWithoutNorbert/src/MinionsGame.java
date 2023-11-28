@@ -52,7 +52,6 @@ public class MinionsGame {
       if(beginner==0){
       drawRange = (int) ((Math.random()*MAX_DRAW)+1);
       drawSideComputer = drawRandomNumber(1);
-      computerTeamSize += drawRange;
       // Ausgabe für den Nutzer, was der Computer gezogen hat.
       // wir wollen, dass der Computer die Seite wechselt, wenn auf einer Seite keine Minions mehr sind.
       if ((leftSide-leftDrawn)==0) {
@@ -60,6 +59,8 @@ public class MinionsGame {
         if(drawRange>(rightSide-rightDrawn)){
         drawRange = (rightSide-rightDrawn);
         computerHasNorbert = true;
+        computerTeamSize += drawRange;
+        outputComputerTurn(drawRange, drawSideComputer);
       }
       }
       else if((rightSide-rightDrawn)==0){
@@ -67,6 +68,8 @@ public class MinionsGame {
         if(drawRange>(leftSide-leftDrawn)){
         drawRange = (leftSide-leftDrawn);
         computerHasNorbert = true;
+        computerTeamSize += drawRange;
+        outputComputerTurn(drawRange, drawSideComputer);
       }
       }
       else if(leftDrawn+rightDrawn==MINION){
@@ -76,36 +79,20 @@ public class MinionsGame {
       //addiert die Anzahl, die der Computer gezogen hat zur Gesamtanzahl von gezogenen Links oder Rechts
       if(!computerHasNorbert){
       if (drawSideComputer==0) {
+        if(drawRange>(leftSide-leftDrawn)){
+        drawRange = (leftSide-leftDrawn);}
         leftDrawn += drawRange;
       } else {
+        if(drawRange>(rightSide-rightDrawn)){
+        drawRange = (rightSide-rightDrawn);}
         rightDrawn += drawRange;
       }
+      computerTeamSize += drawRange;
+      outputComputerTurn(drawRange, drawSideComputer);
     }
       // falls der Computer die letzten Minions zieht, wird userHatNorbert auf true gesetzt
       if(leftDrawn+rightDrawn==MINION &&!computerHasNorbert){
         userHasNorbert= true;
-      }
-      //Ausgabe für den Nutzer, wieviele Minions der Computer zieht.
-      if (drawSideComputer==0) {
-        if(drawRange==1){
-          System.out.println("Computer zieht einen Minion von der linken Seite.");
-        }
-        else if(drawRange>1){
-          System.out.println("Computer zieht "+drawRange+" Minions von der linken Seite.");
-        }
-        else if(drawRange==0){
-          System.out.println("Computer zieht Norbert.");
-        }
-      }  else if (drawSideComputer==1) {
-          if(drawRange==1){
-          System.out.println("Computer zieht einen Minion von der rechten Seite.");
-          }
-          else if(drawRange>1){
-          System.out.println("Computer zieht "+drawRange+" Minions von der rechten Seite.");
-          }
-          else if(drawRange==0){
-          System.out.println("Computer zieht Norbert.");
-          }
       }
     }
 
@@ -267,5 +254,30 @@ public class MinionsGame {
         }
     }
   return drawSide;
+ }
+ public static void outputComputerTurn(int drawRange, int drawSideComputer){
+        //Ausgabe für den Nutzer, wieviele Minions der Computer zieht.
+      if (drawSideComputer==0) {
+        if(drawRange==1){
+          System.out.println("Computer zieht einen Minion von der linken Seite.");
+        }
+        else if(drawRange>1){
+          System.out.println("Computer zieht "+drawRange+" Minions von der linken Seite.");
+        }
+        else if(drawRange==0){
+          System.out.println("Computer zieht Norbert.");
+        }
+      }
+      else if (drawSideComputer==1) {
+          if(drawRange==1){
+          System.out.println("Computer zieht einen Minion von der rechten Seite.");
+          }
+          else if(drawRange>1){
+          System.out.println("Computer zieht "+drawRange+" Minions von der rechten Seite.");
+          }
+          else if(drawRange==0){
+          System.out.println("Computer zieht Norbert.");
+          }
+      }
  }
 }
