@@ -6,3 +6,4 @@ TODO:
 -[ ] Evtl coole Anzeige, am Spielende (vielleicht Partyemojis, falls Nutzer gewonnen hat?)
 -[ ] Optional noch überlegen, ob andere Teile des Programms ausgelagert werden sollten (glaube aber nicht sinnvoll )
 -[ ] Wenn am Ende nur noch Norbert übrig geblieben ist, soll ausgegeben werden, dass er dir oder dem Computer zugewiesen wird.
+
