@@ -130,6 +130,7 @@ public class MinionsGame {
     System.out.println();
     System.out.println("⬇️ ⬇️ ⬇️  Das Spiel ist vorbei. ⬇️ ⬇️ ⬇️");
     System.out.println();
+    System.out.println();
     System.out.println("Das Team des Computers besteht aus : "+computerTeamSize+" Minion.");
     for(int i=0; i<computerTeamSize;i++){
       System.out.print("🟡"+" ");
@@ -139,6 +140,7 @@ public class MinionsGame {
     }
     System.out.println();
     // Nutzer
+        System.out.println();
         System.out.println("Dein Team besteht aus : "+userTeamSize+" Minion.");
     for(int i=0; i<userTeamSize;i++){
       System.out.print("🟡"+" ");
