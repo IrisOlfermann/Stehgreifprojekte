@@ -6,10 +6,13 @@ public class MinionsGame {
    *
    */
   public static void main(String[] args) {
+    // Um die Emoji‘s verwenden zu können
+    System.setProperty("file.encoding", "UTF-8");
+
     Scanner StaticScanner = new Scanner(System.in);
 
     final int MINION = 10;
-    final char NORBERT = 'O';
+    final String NORBERT =  "🔴";
     final int MAX_DRAW = 3;
 
     // Variablen um die Position zu bestimmen
@@ -35,7 +38,7 @@ public class MinionsGame {
     // o ist links, 1 ist rechts
     int drawSideComputer;
 
-    System.out.println("\nMission without Nobert!\n");
+    System.out.println("\nMission without Nobert " + NORBERT +  "!\n");
     System.out.println("Es wird zufällig ausgelost, wer anfangen darf.");
     if(beginner==0){
       System.out.println("Der Computer wurde ausgelost und darf anfangen.\n");
@@ -43,7 +46,7 @@ public class MinionsGame {
     else{
       System.out.println("Du wurdest ausgelost und darfst anfangen.\n");
     }
-    System.out.print("Hier ist die zufällig ausgeloste Reihenfolge der Minions:\n");
+    System.out.print("\nHier ist die zufällig ausgeloste Reihenfolge der Minions:\n");
 
     // Spiel start
     while(!userHasNorbert&&!computerHasNorbert){
@@ -103,21 +106,25 @@ public class MinionsGame {
       System.out.println("Tipp: Wenn du Norbert in dein Team wählst, verlierst du.");
 
       // Seite wählen
+      System.out.println();
       System.out.println("Von welcher Seite l)inks oder r)echts möchtest du wählen?");
       drawSide = recognizeErrors(StaticScanner.next().charAt(0));
       // Anzahl wählen
+      System.out.println();
       System.out.println("Wieviele Minions sollen in dein Team? Wähle eine Anzahl von 1-3");
       drawRange = recognizeErrors();
         // Wenn weniger da sind als der Nutzer ziehen will, Anzahl die gezogen wird automatisch auf Rest
         if((drawRange>(rightSide-rightDrawn))&& drawSide=='r'){
         drawRange = (rightSide-rightDrawn);
         userHasNorbert = true;
-        System.out.print("Ups, du hast extra Norbert gezogen.\n");
+        System.out.println();
+        System.out.print("🤦🏻‍♂️🤦🏿🤦🏼‍♂️ Ups, du hast extra Norbert gezogen. 🤦🏾🤦🏻‍♀️🤦🏽‍♀️\n");
       }
         else if((drawRange>(leftSide-leftDrawn))&& drawSide=='l'){
         drawRange = (leftSide-leftDrawn);
         userHasNorbert = true;
-        System.out.print("Ups, du hast extra Norbert gezogen.\n");
+        System.out.println();
+        System.out.print("🤦🏻‍♂️🤦🏿🤦🏼‍♂️ Ups, du hast extra Norbert gezogen. 🤦🏾🤦🏻‍♀️🤦🏽‍♀️\n");
  }
       // wenn die linke und die rechte Seite leer sind, wird Norbert dem Team "hinzugefügt"
       if((rightSide-rightDrawn)==0 && (leftSide-leftDrawn==0)){
@@ -141,7 +148,8 @@ public class MinionsGame {
       }
     // Spielende/ Ausgabe der Teams
     // Computer
-    System.out.println("\nDas Spiel ist vorbei.");
+    System.out.println();
+    System.out.println("⬇️ ⬇️ ⬇️  Das Spiel ist vorbei. ⬇️ ⬇️ ⬇️");
     if(computerTeamSize==1){
       System.out.println("Das Team des Computers besteht aus einem Minion.");
     }else{
@@ -149,40 +157,46 @@ public class MinionsGame {
     }
     if(computerHasNorbert){
       for(int i=0; i<computerTeamSize-1;i++){
-      System.out.print("X ");
+      System.out.print("🟡");
     }
-      System.out.println("O ");
+      System.out.println(NORBERT);
     }
     else{
       for(int i=0; i<computerTeamSize;i++){
-      System.out.print("X ");
+      System.out.print("🟡");
     }
     }
-     System.out.println();
+    System.out.println();
     // Nutzer
     if(userTeamSize==1){
+      System.out.println();
       System.out.println("Dein Team besteht aus einem Minion und Norbert.");
     }
     else if(userTeamSize>1&&userHasNorbert){
+      System.out.println();
       System.out.println("Dein Team besteht aus : "+userTeamSize+" Minions und Norbert.");
     }
     else if(userTeamSize>1&&computerHasNorbert){
+      System.out.println();
       System.out.println("Dein Team besteht aus : "+userTeamSize+" Minions.");
     }
     else if(userTeamSize==0&&userHasNorbert){
+      System.out.println();
       System.out.println("Dein Team besteht aus Norbert.");
     }
     for(int i=0; i<userTeamSize;i++){
-      System.out.print("X ");
+      System.out.print("🟡");
     }
     if(userHasNorbert){
-      System.out.print("O ");
+      System.out.print(NORBERT);
       }
       System.out.println();
     if (userHasNorbert) {
-      System.out.println("Da du Norbert in dein Team gezogen hast, hast du leider verloren.");
+      System.out.println();
+      System.out.println("Da du Norbert "+ NORBERT +" in dein Team gezogen hast, hast du leider verloren. 😭😭😭");
     } else if(computerHasNorbert){
-      System.out.println("Der Computer hat Norbert in sein Team gewählt, also hast du gewonnen :)");
+      System.out.println();
+      System.out.println("🎉 Der Computer hat Norbert "+ NORBERT +" in sein Team gewählt, also hast du gewonnen!! 🥳");
     }
     System.out.println();
   }
@@ -191,25 +205,25 @@ public class MinionsGame {
     return (int) (Math.random()*(b+1));
   }
 
-  public static void lineupMinions(int leftSide, int rightSide, char NORBERT, int leftDrawn, int rightDrawn, boolean computerHasNorbert, boolean userHasNorbert){
+  public static void lineupMinions(int leftSide, int rightSide, String NORBERT, int leftDrawn, int rightDrawn, boolean computerHasNorbert, boolean userHasNorbert){
    // Minions + Nobert aufgestellt!
     for (int i=0; i<leftDrawn; i++){
-      System.out.print('-'+" ");
+      System.out.print("⚫");
     }
     for (int i=leftDrawn; i<leftSide; i++){
-      System.out.print('X'+" ");
+      System.out.print("🟡");
     }
     if(computerHasNorbert==false&&userHasNorbert==false){
-      System.out.print(NORBERT+" ");
+      System.out.print(NORBERT);
     }
     else if(computerHasNorbert||userHasNorbert){
-      System.out.print("-");
+      System.out.print("⚫");
     }
     for (int i=0; i<(rightSide-rightDrawn); i++){
-      System.out.print('X'+" ");
+      System.out.print("🟡");
     }
     for (int i=0; i<(rightDrawn); i++){
-      System.out.print('-'+" ");
+      System.out.print("⚫");
     }
     System.out.println("\n");
 
@@ -259,24 +273,24 @@ public class MinionsGame {
         //Ausgabe für den Nutzer, wieviele Minions der Computer zieht.
       if (drawSideComputer==0) {
         if(drawRange==1){
-          System.out.println("Computer zieht einen Minion von der linken Seite.");
+          System.out.println("🤖: Computer zieht einen Minion von der linken Seite.");
         }
         else if(drawRange>1){
-          System.out.println("Computer zieht "+drawRange+" Minions von der linken Seite.");
+          System.out.println("🤖: Computer zieht "+drawRange+" Minions von der linken Seite.");
         }
         else if(drawRange==0){
-          System.out.println("Computer zieht Norbert.");
+          System.out.println("🤖: Computer zieht Norbert.");
         }
       }
       else if (drawSideComputer==1) {
           if(drawRange==1){
-          System.out.println("Computer zieht einen Minion von der rechten Seite.");
+          System.out.println("🤖: Computer zieht einen Minion von der rechten Seite.");
           }
           else if(drawRange>1){
-          System.out.println("Computer zieht "+drawRange+" Minions von der rechten Seite.");
+          System.out.println("🤖: Computer zieht "+drawRange+" Minions von der rechten Seite.");
           }
           else if(drawRange==0){
-          System.out.println("Computer zieht Norbert.");
+          System.out.println("🤖: Computer zieht Norbert.");
           }
       }
  }
