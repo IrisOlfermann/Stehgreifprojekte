@@ -75,7 +75,7 @@ public class MinionsGame {
       }
       else if((rightSide-rightDrawn)==0){
         drawSideComputer = 0; // wechselt auf links
-        if(drawRange>(leftSide-leftDrawn)){ {// zieht wenn weniger da sind als die zufällige Range nur noch soviele wie da sind und Norbert.
+        if(drawRange>(leftSide-leftDrawn)){ // zieht wenn weniger da sind als die zufällige Range nur noch soviele wie da sind und Norbert.
         drawRange = (leftSide-leftDrawn);
         computerHasNorbert = true;
         computerTeamSize += drawRange;
