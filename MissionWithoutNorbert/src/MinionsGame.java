@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class MinionsGame {
   /**
    * @param args
-   *
+   * @authors Aya Akutsu, Dominik Kulak, Iris Olfermann
    *
    */
   public static void main(String[] args) {
