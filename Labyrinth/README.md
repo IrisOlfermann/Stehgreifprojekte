@@ -3,6 +3,7 @@ TODO:
 - [ ] Ausgabe der 3 möglichen Labyrinthe (Dominik, Iris, Aya)
   - [ ] Nutzer darf eins aussuchen (Iris)
   - [ ] Fehlererkennung (Iris)
+  - [ ] Ausgabe von 2D / 3D Arrays (Iris)
 
 ### Methoden
 - [ ] Erläuterung des Spiels
