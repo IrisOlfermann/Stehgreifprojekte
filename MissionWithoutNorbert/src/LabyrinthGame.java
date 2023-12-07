@@ -1,14 +1,18 @@
+import java.util.Scanner;
+
 public class LabyrinthGame {
 public static void main(String[] args) {
-    int[][]x=new int[][]{{1,1,1,1,1,0,1},
-                         {1,0,0,0,1,0,1},
-                         {1,0,1,0,1,0,1},
-                         {1,0,1,0,0,0,1},
-                         {1,0,1,1,1,1,1}};
+    Scanner StaticScanner = new Scanner(System.in);
 
-    for(int zeile=0; zeile<x.length;zeile++){
-        for(int spalte=0; spalte<x[0].length; spalte++){
-            System.out.print(x[zeile][spalte]);
+    int[][]Labyrinth=new int[][]{{1,1,1,1,1,0,1},
+                                 {1,0,0,0,1,0,1},
+                                 {1,0,1,0,1,0,1},
+                                 {1,0,1,0,0,0,1},
+                                 {1,0,1,1,1,1,1}};
+
+    for(int zeile=0; zeile<Labyrinth.length;zeile++){
+        for(int spalte=0; spalte<Labyrinth[0].length; spalte++){
+            System.out.print(Labyrinth[zeile][spalte]);
             
         }
         System.out.println();
