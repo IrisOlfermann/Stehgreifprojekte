@@ -2,31 +2,36 @@ import java.util.Scanner;
 public class LabyrinthGame {
     public static void main(String[] args){
 
+
+    }
+            char[][] userSelection(){
     // Für die Eingabe vom Nutzer
     Scanner StaticScanner = new Scanner(System.in);
-    }
-
-    public static char[][] labyrinthSelection(){
-        char[][]Labyrinth_1=new char[][]{{╔,═,═,═,═,═,═,═,╗}
-                                         {║,*,*,*,*,*,*,*,║},
-                                         {║,*,║,═,║,/,║,*,║},
-                                         {║,*,/,/,║,/,║,*,║},
-                                         {║,*,╔,/,║,/,║,*,A},
-                                         {╚,B,╩,=,╩,═,╩,═,╝}};
-
+    
+    char[][] labyrinth_1 = new char[][]{
+        {'╔', '═', '═', '═', '═', '═', '═', '═', '╗'},
+        {'║', '×', '×', '×', '×', '×', '×', '×', '║'},
+        {'║', '×', '║', '═', '║', '×', '║', '×', '║'},
+        {'║', '×', '×', '×', '║', '×', '║', '×', '║'},
+        {'║', '×', '╔', '×', '║', '×', '║', '×', 'A'},
+        {'╚', 'B', '╩', '=', '╩', '═', '╩', '═', '╝'}
+        };
         
 
-        char[][]Labyrinth_2=new char[][]{{╔,═,═,═,╦,═,═,═,═,═,╗}
-                                         {║,×,×,×,║,×,×,×,×,×,║},
-                                         {║,═,×,╔,╝,×,║,×,║,×,║},
-                                         {║,×,×,║,×,×,║,×,║,×,║},
-                                         {║,×,×,×,×,×,║,×,║,×,A},
-                                         {║,×,╔,×,║,×,║,×,×,×,║}
-                                         {║,×,║,×,╚,═,╣,×,║,×,║}
-                                         {║,×,║,×,×,×,║,×,║,×,║}
-                                         {B,×,╠,═,═,×,║,×,×,×,║}
-                                         {╚,═,╩,/,═,═,╩,═,═,═,╝}};
-        char labyrinth3[][]= new char[1][1];
+    char[][] labyrinth_2 = new char[][]{
+        {'╔', '═', '═', '═', '╦', '═', '═', '═', '═', '═', '╗'},
+        {'║', '×', '×', '×', '║', '×', '×', '×', '×', '×', '║'},
+        {'║', '═', '×', '╔', '╝', '×', '║', '×', '║', '×', '║'},
+        {'║', '×', '×', '║', '×', '×', '║', '×', '║', '×', '║'},
+        {'║', '×', '×', '×', '×', '×', '║', '×', '║', '×', 'A'},
+        {'║', '×', '╔', '×', '║', '×', '║', '×', '×', '×', '║'},
+        {'║', '×', '║', '×', '╚', '═', '╣', '×', '║', '×', '║'},
+        {'║', '×', '║', '×', '×', '×', '║', '×', '║', '×', '║'},
+        {'B', '×', '╠', '═', '═', '×', '║', '×', '×', '×', '║'},
+        {'╚', '═', '╩', '/', '═', '═', '╩', '═', '═', '═', '╝'}
+        };
+        char labyrinth_3[][]= new char[1][1];
+        
         int selectedLabyrinth;
 
         System.out.println("Welches Labyrinth 1,2 oder 3 soll BB2 durchlaufen?");
@@ -35,16 +40,16 @@ public class LabyrinthGame {
         // Zurückgabe des ausgewählten Labyrinths
         switch (selectedLabyrinth) {
             case 1:
-                return labyrinth1;
+                return labyrinth_1;
             case 2:
-                return labyrinth2;
+                return labyrinth_2;
             case 3:
-                return labyrinth3;
+                return labyrinth_3;
                 // nochmal angucken
             default:
-            return labyrinth1;
+            return labyrinth_1;
         }
-    }
+        }
     public static int recognizeErrors(){
         // auch hier muss ein StaticScanner Objekt erzeugt werden, um die Methode zu verwenden.
           Scanner StaticScanner = new Scanner(System.in);
