@@ -1,15 +1,22 @@
 import java.util.Scanner;
 public class Labyrinth {
+      /**
+   * @param args
+   * @authors Aya Akutsu, Dominik Kulak, Iris Olfermann
+   */
     public static void main(String[] args){
-
-    // Für die Eingabe vom Nutzer
-    Scanner StaticScanner = new Scanner(System.in);
+        // Für die Eingabe vom Nutzer
+        Scanner StaticScanner = new Scanner(System.in);
+        char[][] labyrinth = labyrinthSelection();
+        printLabyrinth(labyrinth);
     }
-
-    public static char[][][] labyrinthSelection(){
-        char labyrinth1[][][]= new char[1][1][1];
-        char labyrinth2[][][]= new char[1][1][1];
-        char labyrinth3[][][]= new char[1][1][1];
+    // Nutzerauswahl des Labyrinths
+    public static char[][] labyrinthSelection(){
+        char labyrinth1[][]= {  {'x','y'},
+                                {'q','z'},
+                             };
+        char labyrinth2[][]= new char[1][1];
+        char labyrinth3[][]= new char[1][1];
         int selectedLabyrinth;
 
         System.out.println("Welches Labyrinth 1,2 oder 3 soll BB2 durchlaufen?");
@@ -52,5 +59,13 @@ public class Labyrinth {
               }
           }
        return drawNumber;
+      }
+      public static void printLabyrinth(char[][]labyrinth){
+        for (int i = 0; i < labyrinth.length; i++) {
+            for (int j = 0; j < labyrinth[i].length; j++) {
+                System.out.print(labyrinth[i][j]);
+            }
+            System.out.println();
+        }
       }
 }
