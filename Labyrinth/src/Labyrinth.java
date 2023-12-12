@@ -8,8 +8,17 @@ public class Labyrinth {
         // Für die Eingabe vom Nutzer
         Scanner StaticScanner = new Scanner(System.in);
         char[][] labyrinth = labyrinthSelection();
+        char[][] route = new char[labyrinth.length][labyrinth[0].length];
+        // kopiert das Labyrinth in den route-Array, in dem der Weg gespeichert wird.
+        for (int i = 0; i < labyrinth.length; i++) {
+            for (int j = 0; j < labyrinth[i].length; j++) {
+                route[i][j]=labyrinth[i][j];
+            }
+        }
         printLabyrinth(labyrinth);
+        printLabyrinth(route);
     }
+
     // Nutzerauswahl des Labyrinths
     public static char[][] labyrinthSelection(){
         char labyrinth1[][]= {{'x','y'},
@@ -45,6 +54,12 @@ public class Labyrinth {
             return labyrinth1;
         }
     }
+
+    /**
+     * überprüft eine Eingabe des Nutzersn auf Fehler
+     * @return eine Ganzzahl
+     *
+     */
     public static int recognizeErrors(){
         // auch hier muss ein StaticScanner Objekt erzeugt werden, um die Methode zu verwenden.
           Scanner StaticScanner = new Scanner(System.in);
