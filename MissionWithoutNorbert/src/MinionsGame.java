@@ -6,6 +6,7 @@ public class MinionsGame {
    *
    */
   public static void main(String[] args) {
+    System.out.println();
     // Um die Emoji‘s verwenden zu können
     System.setProperty("file.encoding", "UTF-8");
 
@@ -16,9 +17,13 @@ public class MinionsGame {
     final int MINION = 10;
     final String NORBERT =  "🔴";
     final int MAX_DRAW = 3;
+    final int COMPUTER = 0;
+    final int USER = 1;
+    final int LEFT =0;
+    final int RIGHT =1;
 
     // Variablen um die Position von Norbert & Aufteilung von linker & rechter Seite zu bestimmen
-    int randomPosition = drawRandomNumber(MINION);
+    int randomPosition = ziehen(0,MINION);
     int leftSide = randomPosition;
     int rightSide = MINION - leftSide;
     int leftDrawn = 0;
@@ -35,7 +40,7 @@ public class MinionsGame {
     int drawRange=0;
 
     // Zufallszahl wer beginnt. 0 für Computer, 1 für Nutzer
-    int beginner = drawRandomNumber(1);
+    int beginner = ziehen(0,1);
     // o ist links, 1 ist rechts
     int drawSideComputer;
 
@@ -46,7 +51,7 @@ public class MinionsGame {
     System.out.println("Es wird immer abwechselnd bis zu 3 Minions gezogen.");
     System.out.println("Es wird zufällig ausgelost, wer anfangen darf.");
     // Ausgabe, wer beginnt
-    if(beginner==0){
+    if(beginner==COMPUTER){
       System.out.println("Der Computer wurde ausgelost und darf anfangen.\n");
     }
     else{
@@ -59,34 +64,34 @@ public class MinionsGame {
       //  Ausgabe der Minions & Norbert Aufstellung
       lineupMinions(leftSide, rightSide, NORBERT, leftDrawn, rightDrawn, computerHasNorbert, userHasNorbert);
       // Zug des Computers
-      if(beginner==0){
+      if(beginner==COMPUTER){
       drawRange = (int) ((Math.random()*MAX_DRAW)+1);
-      drawSideComputer = drawRandomNumber(1);
+      drawSideComputer = ziehen(0,1);
       // Ausgabe für den Nutzer, was der Computer gezogen hat.
       // wir wollen, dass der Computer die Seite wechselt, wenn auf einer Seite keine Minions mehr sind.
       if ((leftSide-leftDrawn)==0) {
-        drawSideComputer = 1; // wechselt auf rechts
+        drawSideComputer = RIGHT; // wechselt auf rechts
         if(drawRange>(rightSide-rightDrawn)){ // zieht wenn weniger da sind als die zufällige Range nur noch soviele wie da sind und Norbert.
         drawRange = (rightSide-rightDrawn);
         computerHasNorbert = true;
         computerTeamSize += drawRange;
-        outputComputerTurn(drawRange, drawSideComputer);
+        outputComputerTurn(drawRange, drawSideComputer, LEFT, RIGHT);
       }
       }
       else if((rightSide-rightDrawn)==0){
-        drawSideComputer = 0; // wechselt auf links
+        drawSideComputer = LEFT; // wechselt auf links
         if(drawRange>(leftSide-leftDrawn)){ // zieht wenn weniger da sind als die zufällige Range nur noch soviele wie da sind und Norbert.
         drawRange = (leftSide-leftDrawn);
         computerHasNorbert = true;
         computerTeamSize += drawRange;
-        outputComputerTurn(drawRange, drawSideComputer);
+        outputComputerTurn(drawRange, drawSideComputer, LEFT, RIGHT);
       }
       }
       else if(leftDrawn+rightDrawn==MINION){ // Sobald alle übrigen Minions gezogen wurden, wird Norbert zugewiesen
         computerHasNorbert= true;
       }
       if(!computerHasNorbert){ // Solange Norbert existriert
-      if (drawSideComputer==0) { // Zieht von links
+      if (drawSideComputer==LEFT) { // Zieht von links
         if(drawRange>(leftSide-leftDrawn)){ // zieht wenn weniger da sind als die zufällige Range nur soviele wie da sind. (Zählt für die linke Seite)
         drawRange = (leftSide-leftDrawn);}
         leftDrawn += drawRange;
@@ -96,7 +101,7 @@ public class MinionsGame {
         rightDrawn += drawRange;
       }
       computerTeamSize += drawRange;  // Teamgröße vom Computer wird Aktualisiert.
-      outputComputerTurn(drawRange, drawSideComputer);
+      outputComputerTurn(drawRange, drawSideComputer, LEFT, RIGHT);
     }
       // falls der Computer die letzten Minions zieht, wird userHatNorbert auf true gesetzt
       if(leftDrawn+rightDrawn==MINION &&!computerHasNorbert){
@@ -143,11 +148,11 @@ public class MinionsGame {
       }
     }
     //Spieler wechsel
-    if(beginner==0){
-      beginner = 1;
+    if(beginner==COMPUTER){
+      beginner = USER;
     }
     else{
-      beginner = 0;
+      beginner = COMPUTER;
     }
       }
     // Spielende/ Ausgabe der Teams
@@ -208,8 +213,8 @@ public class MinionsGame {
   // Hier wird eine zufällige Zahl zwischen  0 und 1 gemacht umd später zu bestimmen wer das Spiel beginnt.
   // Sollte die zufällige Zahl eine 0 sein fängt der Computer an.
   // Sollte die zufällige Zahl eine 1 sein fängt der Nutzer an.
-  public static int drawRandomNumber(int b){
-    return (int) (Math.random()*(b+1));
+  public static int ziehen( int untereGrenze, int obereGrenze){
+    return (int) (untereGrenze+ (Math.random()*(obereGrenze-untereGrenze+1)));
   }
 
   public static void lineupMinions(int leftSide, int rightSide, String NORBERT, int leftDrawn, int rightDrawn, boolean computerHasNorbert, boolean userHasNorbert){
@@ -274,9 +279,9 @@ public class MinionsGame {
     }
   return drawSide;
  }
- public static void outputComputerTurn(int drawRange, int drawSideComputer){
+ public static void outputComputerTurn(int drawRange, int drawSideComputer, int LEFT, int RIGHT){
         //Ausgabe für den Nutzer, wieviele Minions der Computer zieht.
-      if (drawSideComputer==0) {
+      if (drawSideComputer==LEFT) {
         if(drawRange==1){
           System.out.println("🤖: Computer zieht einen Minion von der linken Seite.");
         }
@@ -287,7 +292,7 @@ public class MinionsGame {
           System.out.println("🤖: Computer zieht Norbert.");
         }
       }
-      else if (drawSideComputer==1) {
+      else if (drawSideComputer==RIGHT) {
           if(drawRange==1){
           System.out.println("🤖: Computer zieht einen Minion von der rechten Seite.");
           }
