@@ -12,10 +12,20 @@ public class Labyrinth {
     }
     // Nutzerauswahl des Labyrinths
     public static char[][] labyrinthSelection(){
-        char labyrinth1[][]= {  {'x','y'},
-                                {'q','z'},
+        char labyrinth1[][]= {{'x','y'},
+                              {'q','z'},
                              };
-        char labyrinth2[][]= new char[1][1];
+        char labyrinth2[][]= {  {'.','.','.','.','.','.','.','.','.'},
+                                {'.',' ',' ',' ',' ','.',' ',' ','A'},
+                                {'.',' ','.','.',' ',' ',' ',' ','.'},
+                                {'.',' ',' ','.','.','.','.','.','.'},
+                                {'B',' ',' ','.',' ',' ',' ',' ','.'},
+                                {'.','.',' ','.',' ','.',' ','.','.'},
+                                {'.',' ',' ',' ',' ','.',' ',' ','.'},
+                                {'.',' ',' ',' ',' ',' ',' ',' ','.'},
+                                {'.','.','.','.','.','.','.','.','.'}
+
+        };
         char labyrinth3[][]= new char[1][1];
         int selectedLabyrinth;
 
