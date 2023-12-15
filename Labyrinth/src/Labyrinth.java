@@ -5,6 +5,9 @@ public class Labyrinth {
    * @authors Aya Akutsu, Dominik Kulak, Iris Olfermann
    */
     public static void main(String[] args){
+        //Die Erklärung des Spiels wird ausgeben.
+        gameExplanation();
+
         // Für die Eingabe vom Nutzer
         Scanner StaticScanner = new Scanner(System.in);
         char[][] labyrinth = labyrinthSelection();
@@ -15,6 +18,7 @@ public class Labyrinth {
                 route[i][j]=labyrinth[i][j];
             }
         }
+        
         printLabyrinth(labyrinth);
     }
 
@@ -107,5 +111,15 @@ public class Labyrinth {
             }
             System.out.println();
         }
+      }
+
+      // Die Methode gameExplanation gibt die Erklärung des Spiels aus.
+      public static void gameExplanation(){
+        System.out.println("");
+        System.out.println("BB-8 möchte gerne nach Hause kommen muss aber jedoch durch eins der drei Labyrinthe durch.");
+        System.out.println("Um das zu schaffen verwentet er die Rechte-Hand-Regel.");
+        System.err.println("BB-8 wird nach dieser Strategie Schritt für Schritt gehen, so dass man seine Suche nachvollziehen kann.");
+        System.out.println("Sobald BB-8 das Ziel erreicht hat, zeigt er uns sein Weg in die Freiheit.");
+        System.out.println("");
       }
 }
