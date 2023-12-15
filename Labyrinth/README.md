@@ -6,6 +6,7 @@ TODO:
   - [ ] Ausgabe von 2D / 3D Arrays (Iris)
 
 ### Methoden
+- [ ] Anfangsposition und Endposition anhand des Labyrinths ermitteln
 - [ ] Erläuterung des Spiels
 - [ ] Ausgabe der 3 möglichen Labyrinthe
   - [ ] Nutzer darf eins aussuchen

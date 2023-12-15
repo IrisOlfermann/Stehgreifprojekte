@@ -7,17 +7,27 @@ public class Labyrinth {
     public static void main(String[] args){
         // Für die Eingabe vom Nutzer
         Scanner StaticScanner = new Scanner(System.in);
+
+        final char start ='B';
+        final char end = 'A';
+        // damit können wir dann überprüfen
+        String walls = "╔═╗║╚╝╩╦╠╣";
+
         char[][] labyrinth = labyrinthSelection();
-        char[][] route = new char[labyrinth.length][labyrinth[0].length];
-        // kopiert das Labyrinth in den route-Array, in dem der Weg gespeichert wird.
-        for (int i = 0; i < labyrinth.length; i++) {
-            for (int j = 0; j < labyrinth[i].length; j++) {
-                route[i][j]=labyrinth[i][j];
-            }
-        }
+        char[][] route = copyLabyrinth(labyrinth);
+        char direction = '>';
+
+        int[] startPos = findPosition(labyrinth, start);
+        int[] endPos = findPosition(labyrinth, end);
+        int stepCounter = 0;
+
         printLabyrinth(labyrinth);
     }
+    public static char[][]step(){
+         char[][] labyrinth = new char[0][1];
+         return labyrinth;
 
+    }
     // Nutzerauswahl des Labyrinths
     public static char[][] labyrinthSelection(){
         char[][] labyrinth1 = new char[][]{
@@ -107,5 +117,27 @@ public class Labyrinth {
             }
             System.out.println();
         }
+      }
+      public static char[][] copyLabyrinth(char[][]labyrinth){
+         char[][] copy =new char[labyrinth.length][labyrinth[0].length];
+        // kopiert das Labyrinth in den route-Array, in dem der Weg gespeichert wird.
+        for (int i = 0; i < labyrinth.length; i++) {
+            for (int j = 0; j < labyrinth[i].length; j++) {
+                copy[i][j]=labyrinth[i][j];
+            }
+        }
+        return copy;
+      }
+      public static int[] findPosition(char[][] labyrinth, char searchedChar){
+        int[] position = new int[2];
+                for (int i = 0; i < labyrinth.length; i++) {
+            for (int j = 0; j < labyrinth[i].length; j++) {
+                if(labyrinth[i][j]== searchedChar){
+                    position[0]=i;
+                    position[1]=j;
+                }
+            }
+        }
+        return position;
       }
 }
