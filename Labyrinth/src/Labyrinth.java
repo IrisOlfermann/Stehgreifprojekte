@@ -403,6 +403,7 @@ public class Labyrinth {
             }
             System.out.println();
         }
+        System.out.println();
       }
       public static String[][] copyLabyrinth(String[][]labyrinth){
          String[][] copy =new String[labyrinth.length][labyrinth[0].length];
