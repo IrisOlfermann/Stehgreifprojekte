@@ -50,6 +50,7 @@ public class Labyrinth {
                     bb8X = bb8X+1;
                     labyrinth[bb8X][bb8Y]=direction;
                     route[bb8X][bb8Y]=direction;
+                    stepCounter++;
                     printLabyrinth(labyrinth);
                     try {
                         Thread.sleep(700);
@@ -63,6 +64,7 @@ public class Labyrinth {
                     bb8Y = bb8Y+1;
                     labyrinth[bb8X][bb8Y]=direction;
                     route[bb8X][bb8Y]=direction;
+                    stepCounter++;
                     printLabyrinth(labyrinth);
                     try {
                         Thread.sleep(700);
@@ -77,6 +79,7 @@ public class Labyrinth {
                     bb8X = bb8X-1;
                     labyrinth[bb8X][bb8Y]=direction;
                     route[bb8X][bb8Y]=direction;
+                    stepCounter++;
                     printLabyrinth(labyrinth);
                     try {
                         Thread.sleep(700);
@@ -91,6 +94,7 @@ public class Labyrinth {
                     bb8X = bb8X-1;
                     labyrinth[bb8X][bb8Y]=direction;
                     route[bb8X][bb8Y]=direction;
+                    stepCounter++;
                     printLabyrinth(labyrinth);
                     try {
                         Thread.sleep(700);
@@ -106,6 +110,7 @@ public class Labyrinth {
                         bb8Y = bb8Y+1;
                         labyrinth[bb8X][bb8Y]=direction;
                         route[bb8X][bb8Y]=direction;
+                        stepCounter++;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -119,6 +124,7 @@ public class Labyrinth {
                         bb8X = bb8X-1;
                         labyrinth[bb8X][bb8Y]=direction;
                         route[bb8X][bb8Y]=direction;
+                        stepCounter++;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -133,6 +139,7 @@ public class Labyrinth {
                         bb8Y = bb8Y-1;
                         labyrinth[bb8X][bb8Y]=direction;
                         route[bb8X][bb8Y]=direction;
+                        stepCounter++;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -147,6 +154,7 @@ public class Labyrinth {
                         bb8X = bb8X+1;
                         labyrinth[bb8X][bb8Y]=direction;
                         route[bb8X][bb8Y]=direction;
+                        stepCounter++;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -162,6 +170,7 @@ public class Labyrinth {
                     bb8X = bb8X-1;
                     labyrinth[bb8X][bb8Y]=direction;
                     route[bb8X][bb8Y]=direction;
+                    stepCounter++;
                     printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -175,6 +184,7 @@ public class Labyrinth {
                     bb8Y = bb8Y-1;
                     labyrinth[bb8X][bb8Y]=direction;
                     route[bb8X][bb8Y]=direction;
+                    stepCounter++;
                     printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -189,6 +199,7 @@ public class Labyrinth {
                     bb8X = bb8X-1;
                     labyrinth[bb8X][bb8Y]=direction;
                     route[bb8X][bb8Y]=direction;
+                    stepCounter++;
                     printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -203,6 +214,7 @@ public class Labyrinth {
                     bb8Y = bb8Y+1;
                     labyrinth[bb8X][bb8Y]=direction;
                     route[bb8X][bb8Y]=direction;
+                    stepCounter++;
                     printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -218,6 +230,7 @@ public class Labyrinth {
                         bb8Y = bb8Y-1;
                         labyrinth[bb8X][bb8Y]=direction;
                         route[bb8X][bb8Y]=direction;
+                        stepCounter++;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -231,6 +244,7 @@ public class Labyrinth {
                         bb8X = bb8X+1;
                         labyrinth[bb8X][bb8Y]=direction;
                         route[bb8X][bb8Y]=direction;
+                        stepCounter++;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -245,6 +259,7 @@ public class Labyrinth {
                         bb8Y = bb8Y+1;
                         labyrinth[bb8X][bb8Y]=direction;
                         route[bb8X][bb8Y]=direction;
+                        stepCounter++;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -259,6 +274,7 @@ public class Labyrinth {
                         bb8X = bb8X-1;
                         labyrinth[bb8X][bb8Y]=direction;
                         route[bb8X][bb8Y]=direction;
+                        stepCounter++;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -269,7 +285,9 @@ public class Labyrinth {
                     }
         }
     }
-
+    System.out.println("BB8 hat es aus dem Labyrinth geschafft in "+stepCounter+" Schritten.");
+    System.out.println("So sah sein Weg aus: ");
+    printLabyrinth(route);
     }
     public static String[][]step(){
          String[][] labyrinth = new String[0][1];
