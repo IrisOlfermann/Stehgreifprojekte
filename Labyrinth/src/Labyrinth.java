@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class Labyrinth {
-   /**
+    /**
    * @param args
    * @authors Aya Akutsu, Dominik Kulak, Iris Olfermann
    */
@@ -357,26 +357,26 @@ public class Labyrinth {
      *
      *
      */
-     public static void gameExplanation(){
+    public static void gameExplanation(){
         System.out.println("");
         System.out.println("BB-8 möchte gerne nach Hause kommen muss aber jedoch durch eins der drei Labyrinthe durch.");
         System.out.println("Um das zu schaffen verwentet er die Rechte-Hand-Regel.");
         System.err.println("BB-8 wird nach dieser Strategie Schritt für Schritt gehen, so dass man seine Suche nachvollziehen kann.");
         System.out.println("Sobald BB-8 das Ziel erreicht hat, zeigt er uns sein Weg in die Freiheit.");
         System.out.println("");
-      }
-      /**
+    }
+    /**
        * erkennt Fehler bei der Nutzereingabe
        *
        */
     public static int recognizeErrors(){
         // auch hier muss ein StaticScanner Objekt erzeugt werden, um die Methode zu verwenden.
-          Scanner StaticScanner = new Scanner(System.in);
-          boolean validInput= false;
-          int drawNumber=0;
-          String drawRange = StaticScanner.nextLine();
+        Scanner StaticScanner = new Scanner(System.in);
+        boolean validInput= false;
+        int drawNumber=0;
+        String drawRange = StaticScanner.nextLine();
 
-          while(validInput!= true){
+        while(validInput!= true){
             // fängt ab, falls ein falscher Datentyp eingegeben wird.
             try {
                 drawNumber = Integer.parseInt(drawRange);
@@ -384,21 +384,21 @@ public class Labyrinth {
                 System.out.println("Die Eingabe ist keine Zahl. Bitte eine Zahl zwischen 1-3 eingeben.");
             }
             // Wenn klar ist, dass es eine Zahl ist, wird geprüft, ob sie zwischen 1-3 liegt.
-              if (drawNumber==1 || drawNumber ==2 || drawNumber==3) {
+            if (drawNumber==1 || drawNumber ==2 || drawNumber==3) {
                 validInput = true;
-              }
-              else{
+            }
+            else{
                 System.out.println("Ungültige Eingabe. Wähle eine Zahl zwischen 1-3.");
                 drawRange =StaticScanner.nextLine();
-              }
-          }
-       return drawNumber;
-      }
+            }
+        }
+    return drawNumber;
+    }
     /**
      * Ausgabe eines zweidimensionalen Arrays
      * @param labyrinth
      */
-      public static void printLabyrinth(String[][]labyrinth){
+    public static void printLabyrinth(String[][]labyrinth){
         for (int i = 0; i < labyrinth.length; i++) {
             for (int j = 0; j < labyrinth[i].length; j++) {
                 System.out.print(labyrinth[i][j]);
@@ -406,13 +406,13 @@ public class Labyrinth {
             System.out.println();
         }
         System.out.println();
-      }
+    }
     /**
      * Schreibt die Inhalte eines zwei dimensionalen Arrays in einen anderen über.
      * @param labyrinth
      */
-      public static String[][] copyLabyrinth(String[][]labyrinth){
-         String[][] copy =new String[labyrinth.length][labyrinth[0].length];
+    public static String[][] copyLabyrinth(String[][]labyrinth){
+        String[][] copy =new String[labyrinth.length][labyrinth[0].length];
         // kopiert das Labyrinth in den route-Array, in dem der Weg gespeichert wird.
         for (int i = 0; i < labyrinth.length; i++) {
             for (int j = 0; j < labyrinth[i].length; j++) {
@@ -420,12 +420,12 @@ public class Labyrinth {
             }
         }
         return copy;
-      }
+    }
     /**
      * Findet ein beliebig mitgegebenes Zeichen im Labyrinth
      * @param labyrinth, searchedString
      */
-      public static int[] findPosition(String[][] labyrinth, String searchedString){
+    public static int[] findPosition(String[][] labyrinth, String searchedString){
         int[] position = new int[2];
                 for (int i = 0; i < labyrinth.length; i++) {
             for (int j = 0; j < labyrinth[i].length; j++) {
@@ -437,5 +437,5 @@ public class Labyrinth {
             }
         }
         return position;
-      }
+    }
 }
