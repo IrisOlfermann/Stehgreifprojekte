@@ -312,6 +312,15 @@ public class Labyrinth {
         int selectedLabyrinth;
 
         System.out.println("Welches Labyrinth 1,2 oder 3 soll BB2 durchlaufen?");
+        System.out.println( );
+        System.out.println("Labyrinth 1 )" );
+        printLabyrinth(labyrinth1);
+            System.out.println( );
+        System.out.println("Labyrinth 2 )" );
+        printLabyrinth(labyrinth2);
+            System.out.println( );
+        System.out.println("Labyrinth 3 )" );
+        printLabyrinth(labyrinth3);
         // Fehlererkennung bei der Nutzereingabe
         selectedLabyrinth = recognizeErrors();
         // Zurückgabe des ausgewählten Labyrinths
@@ -343,7 +352,7 @@ public class Labyrinth {
         System.out.println("Sobald BB-8 das Ziel erreicht hat, zeigt er uns sein Weg in die Freiheit.");
         System.out.println("");
       }
-      
+
     public static int recognizeErrors(){
         // auch hier muss ein StaticScanner Objekt erzeugt werden, um die Methode zu verwenden.
           Scanner StaticScanner = new Scanner(System.in);
