@@ -91,7 +91,7 @@ public class Labyrinth {
                 else{ // rückwärts laufen
                     direction = BACK;
                     labyrinth[bb8X][bb8Y]=EMPTY;
-                    bb8X = bb8X-1;
+                    bb8Y = bb8Y-1;
                     labyrinth[bb8X][bb8Y]=direction;
                     route[bb8X][bb8Y]=direction;
                     stepCounter++;
@@ -196,7 +196,7 @@ public class Labyrinth {
                 else if((bb8X+1<xLength)&&(labyrinth[bb8X+1][bb8Y]==EMPTY ||(labyrinth[bb8X+1][bb8Y]=="🏠"))){ // links laufen
                     direction = RIGHT;
                     labyrinth[bb8X][bb8Y]=EMPTY;
-                    bb8X = bb8X-1;
+                    bb8X = bb8X+1;
                     labyrinth[bb8X][bb8Y]=direction;
                     route[bb8X][bb8Y]=direction;
                     stepCounter++;
