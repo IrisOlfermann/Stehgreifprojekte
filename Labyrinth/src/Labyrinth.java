@@ -17,9 +17,9 @@ public class Labyrinth {
         final String START ="🤖";
         final String END = "🏠";
         final String STRAIGHT ="⏩️";
-        final String BACK = "⬅️";
-        final String LEFT = "⬆️";
-        final String RIGHT = "⬇️";
+        final String BACK = "⏪️";
+        final String LEFT = "🔼";
+        final String RIGHT = "🔽";
         final String EMPTY = "⬜️";
         // damit können wir dann überprüfen, ob wir vor einer Wand stehen
         //String walls = "╔═╗║╚╝╩╦╠╣";
@@ -49,6 +49,7 @@ public class Labyrinth {
                     labyrinth[bb8X][bb8Y]=EMPTY;
                     bb8X = bb8X+1;
                     labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
                     printLabyrinth(labyrinth);
                     try {
                         Thread.sleep(700);
@@ -61,6 +62,7 @@ public class Labyrinth {
                     labyrinth[bb8X][bb8Y]=EMPTY;
                     bb8Y = bb8Y+1;
                     labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
                     printLabyrinth(labyrinth);
                     try {
                         Thread.sleep(700);
@@ -74,6 +76,7 @@ public class Labyrinth {
                     labyrinth[bb8X][bb8Y]=EMPTY;
                     bb8X = bb8X-1;
                     labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
                     printLabyrinth(labyrinth);
                     try {
                         Thread.sleep(700);
@@ -87,6 +90,7 @@ public class Labyrinth {
                     labyrinth[bb8X][bb8Y]=EMPTY;
                     bb8X = bb8X-1;
                     labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
                     printLabyrinth(labyrinth);
                     try {
                         Thread.sleep(700);
@@ -101,6 +105,7 @@ public class Labyrinth {
                         labyrinth[bb8X][bb8Y]=EMPTY;
                         bb8Y = bb8Y+1;
                         labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -113,6 +118,7 @@ public class Labyrinth {
                         labyrinth[bb8X][bb8Y]=EMPTY;
                         bb8X = bb8X-1;
                         labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -126,6 +132,7 @@ public class Labyrinth {
                         labyrinth[bb8X][bb8Y]=EMPTY;
                         bb8Y = bb8Y-1;
                         labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -139,6 +146,7 @@ public class Labyrinth {
                         labyrinth[bb8X][bb8Y]=EMPTY;
                         bb8X = bb8X+1;
                         labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -153,6 +161,7 @@ public class Labyrinth {
                     labyrinth[bb8X][bb8Y]=EMPTY;
                     bb8X = bb8X-1;
                     labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
                     printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -165,6 +174,7 @@ public class Labyrinth {
                     labyrinth[bb8X][bb8Y]=EMPTY;
                     bb8Y = bb8Y-1;
                     labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
                     printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -178,6 +188,7 @@ public class Labyrinth {
                     labyrinth[bb8X][bb8Y]=EMPTY;
                     bb8X = bb8X-1;
                     labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
                     printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -191,6 +202,7 @@ public class Labyrinth {
                     labyrinth[bb8X][bb8Y]=EMPTY;
                     bb8Y = bb8Y+1;
                     labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
                     printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -203,8 +215,9 @@ public class Labyrinth {
                     if((bb8Y-1>0)&&(labyrinth[bb8X][bb8Y-1]==EMPTY ||(labyrinth[bb8X][bb8Y-1]=="🏠"))){  // rechts laufen
                         direction = BACK;
                         labyrinth[bb8X][bb8Y]=EMPTY;
-                        bb8Y = bb8Y+1;
+                        bb8Y = bb8Y-1;
                         labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -217,6 +230,7 @@ public class Labyrinth {
                         labyrinth[bb8X][bb8Y]=EMPTY;
                         bb8X = bb8X+1;
                         labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -230,6 +244,7 @@ public class Labyrinth {
                         labyrinth[bb8X][bb8Y]=EMPTY;
                         bb8Y = bb8Y+1;
                         labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -243,6 +258,7 @@ public class Labyrinth {
                         labyrinth[bb8X][bb8Y]=EMPTY;
                         bb8X = bb8X-1;
                         labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
                         printLabyrinth(labyrinth);
                         try {
                             Thread.sleep(700);
@@ -277,7 +293,7 @@ public class Labyrinth {
             {"⬛️","⬜️","⬜️","⬛️","⬛️","⬛️","⬛️","⬛️","⬛️"},
             {"🤖","⬜️","⬜️","⬛️","⬜️","⬜️","⬜️","⬜️","⬛️"},
             {"⬛️","⬛️","⬜️","⬛️","⬜️","⬛️","⬜️","⬛️","⬛️"},
-            {"⬛️","⬜️","⬜️","⬜️","⬜️","⬛️","⬜️","⬜️","⬛️"},
+            {"⬛️","⬛️","⬜️","⬛️","⬜️","⬛️","⬜️","⬜️","⬛️"},
             {"⬛️","⬜️","⬜️","⬜️","⬜️","⬜️","⬜️","⬜️","⬛️"},
             {"⬛️","⬛️","⬛️","⬛️","⬛️","⬛️","⬛️","⬛️","⬛️"}
         };
@@ -371,11 +387,11 @@ public class Labyrinth {
         }
         return copy;
       }
-      public static int[] findPosition(String[][] labyrinth, String searchedChar){
+      public static int[] findPosition(String[][] labyrinth, String searchedString){
         int[] position = new int[2];
                 for (int i = 0; i < labyrinth.length; i++) {
             for (int j = 0; j < labyrinth[i].length; j++) {
-                if(labyrinth[i][j]== searchedChar){
+                if(labyrinth[i][j]== searchedString){
                     position[0]=i;
                     position[1]=j;
                     return position;
