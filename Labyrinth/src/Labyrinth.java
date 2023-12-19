@@ -1,59 +1,341 @@
 import java.util.Scanner;
 public class Labyrinth {
-      /**
+    /**
    * @param args
    * @authors Aya Akutsu, Dominik Kulak, Iris Olfermann
    */
     public static void main(String[] args){
+        // Um die Emoji‘s verwenden zu können
+        System.setProperty("file.encoding", "UTF-8");
+
+        //Die Erklärung des Spiels wird ausgeben.
+        gameExplanation();
+
         // Für die Eingabe vom Nutzer
         Scanner StaticScanner = new Scanner(System.in);
-        char[][] labyrinth = labyrinthSelection();
-        char[][] route = new char[labyrinth.length][labyrinth[0].length];
-        // kopiert das Labyrinth in den route-Array, in dem der Weg gespeichert wird.
-        for (int i = 0; i < labyrinth.length; i++) {
-            for (int j = 0; j < labyrinth[i].length; j++) {
-                route[i][j]=labyrinth[i][j];
-            }
-        }
-        printLabyrinth(labyrinth);
-    }
+        // Definition der Richtungen & Anfangs- und Endsymbol
+        final String START ="🤖";
+        final String END = "🏠";
+        final String STRAIGHT ="⏩️";
+        final String BACK = "⏪️";
+        final String LEFT = "🔼";
+        final String RIGHT = "🔽";
+        final String EMPTY = "⬜️";
 
-    // Nutzerauswahl des Labyrinths
-    public static char[][] labyrinthSelection(){
-        char[][] labyrinth1 = new char[][]{
-        {'╔', '═', '═', '═', '═', '═', '═', '═', '╗'},
-        {'║', '×', '×', '×', '×', '×', '×', '×', '║'},
-        {'║', '×', '║', '═', '║', '×', '║', '×', '║'},
-        {'║', '×', '×', '×', '║', '×', '║', '×', '║'},
-        {'║', '×', '╔', '×', '║', '×', '║', '×', 'A'},
-        {'╚', 'B', '╩', '=', '╩', '═', '╩', '═', '╝'}
+        String[][] labyrinth = labyrinthSelection();
+
+        final int xLength = labyrinth.length;
+        final int yLength = labyrinth[0].length;
+
+        String[][] route = copyLabyrinth(labyrinth);
+        String direction = "⏩️";
+
+        int[] startPos = findPosition(labyrinth, START);
+        int[] endPos = findPosition(labyrinth, END);
+        int stepCounter = 0;
+        int bb8X = startPos[0];
+        int bb8Y = startPos[1];
+
+        printLabyrinth(labyrinth);
+        /*
+        *hier fängt der BB8 mit dem Durchlauf des Labyrinths an
+        * Es wird für die vier möglichen Richtungen überprüft, wie er weiterlaufen kann
+         */
+        while(!(bb8X==endPos[0] && bb8Y==endPos[1])){
+            switch (direction) {
+                case STRAIGHT:
+                if ((bb8X+1<xLength)&&(labyrinth[bb8X+1][bb8Y]==EMPTY ||(labyrinth[bb8X+1][bb8Y]=="🏠"))){ // nach rechts laufen
+                    direction = RIGHT;
+                    labyrinth[bb8X][bb8Y]=EMPTY;
+                    bb8X = bb8X+1;
+                    labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
+                    stepCounter++;
+                    printLabyrinth(labyrinth);
+                    try {
+                        Thread.sleep(700);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                else if((bb8Y+1<yLength)&&(labyrinth[bb8X][bb8Y+1]==EMPTY ||(labyrinth[bb8X][bb8Y+1]=="🏠"))){  // geradeaus laufen
+                    labyrinth[bb8X][bb8Y]=EMPTY;
+                    bb8Y = bb8Y+1;
+                    labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
+                    stepCounter++;
+                    printLabyrinth(labyrinth);
+                    try {
+                        Thread.sleep(700);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                else if((bb8X-1>0)&&(labyrinth[bb8X-1][bb8Y]==EMPTY ||(labyrinth[bb8X-1][bb8Y]=="🏠"))){ // links laufen
+                    direction = LEFT;
+                    labyrinth[bb8X][bb8Y]=EMPTY;
+                    bb8X = bb8X-1;
+                    labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
+                    stepCounter++;
+                    printLabyrinth(labyrinth);
+                    try {
+                        Thread.sleep(700);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                else{ // rückwärts laufen
+                    direction = BACK;
+                    labyrinth[bb8X][bb8Y]=EMPTY;
+                    bb8Y = bb8Y-1;
+                    labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
+                    stepCounter++;
+                    printLabyrinth(labyrinth);
+                    try {
+                        Thread.sleep(700);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                case LEFT:
+                    if((bb8Y+1<yLength)&&(labyrinth[bb8X][bb8Y+1]==EMPTY ||(labyrinth[bb8X][bb8Y+1]=="🏠"))){  // rechts laufen
+                        direction = STRAIGHT;
+                        labyrinth[bb8X][bb8Y]=EMPTY;
+                        bb8Y = bb8Y+1;
+                        labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
+                        stepCounter++;
+                        printLabyrinth(labyrinth);
+                        try {
+                            Thread.sleep(700);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    else if((bb8X-1>0)&&(labyrinth[bb8X-1][bb8Y]==EMPTY ||(labyrinth[bb8X-1][bb8Y]=="🏠"))){ // geradeaus/ nach oben laufen
+                        labyrinth[bb8X][bb8Y]=EMPTY;
+                        bb8X = bb8X-1;
+                        labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
+                        stepCounter++;
+                        printLabyrinth(labyrinth);
+                        try {
+                            Thread.sleep(700);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    else if((bb8Y-1>0)&&(labyrinth[bb8X][bb8Y-1]==EMPTY ||(labyrinth[bb8X][bb8Y-1]=="🏠"))){ // nach links laufen
+                        direction = BACK;
+                        labyrinth[bb8X][bb8Y]=EMPTY;
+                        bb8Y = bb8Y-1;
+                        labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
+                        stepCounter++;
+                        printLabyrinth(labyrinth);
+                        try {
+                            Thread.sleep(700);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    else{
+                        direction = RIGHT;
+                        labyrinth[bb8X][bb8Y]=EMPTY;
+                        bb8X = bb8X+1;
+                        labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
+                        stepCounter++;
+                        printLabyrinth(labyrinth);
+                        try {
+                            Thread.sleep(700);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                case BACK:
+                if ((bb8X-1>0)&&(labyrinth[bb8X-1][bb8Y]==EMPTY ||(labyrinth[bb8X-1][bb8Y]=="🏠"))){ // nach rechts laufen
+                    direction = LEFT;
+                    labyrinth[bb8X][bb8Y]=EMPTY;
+                    bb8X = bb8X-1;
+                    labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
+                    stepCounter++;
+                    printLabyrinth(labyrinth);
+                        try {
+                            Thread.sleep(700);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    break;
+                }
+                else if((bb8Y-1<yLength)&&(labyrinth[bb8X][bb8Y-1]==EMPTY ||(labyrinth[bb8X][bb8Y-1]=="🏠"))){  // geradeaus laufen
+                    labyrinth[bb8X][bb8Y]=EMPTY;
+                    bb8Y = bb8Y-1;
+                    labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
+                    stepCounter++;
+                    printLabyrinth(labyrinth);
+                        try {
+                            Thread.sleep(700);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    break;
+                }
+                else if((bb8X+1<xLength)&&(labyrinth[bb8X+1][bb8Y]==EMPTY ||(labyrinth[bb8X+1][bb8Y]=="🏠"))){ // links laufen
+                    direction = RIGHT;
+                    labyrinth[bb8X][bb8Y]=EMPTY;
+                    bb8X = bb8X+1;
+                    labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
+                    stepCounter++;
+                    printLabyrinth(labyrinth);
+                        try {
+                            Thread.sleep(700);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    break;
+                }
+                else{ // rückwärts laufen
+                    direction = STRAIGHT;
+                    labyrinth[bb8X][bb8Y]=EMPTY;
+                    bb8Y = bb8Y+1;
+                    labyrinth[bb8X][bb8Y]=direction;
+                    route[bb8X][bb8Y]=direction;
+                    stepCounter++;
+                    printLabyrinth(labyrinth);
+                        try {
+                            Thread.sleep(700);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    break;
+                }
+                case RIGHT:
+                    if((bb8Y-1>0)&&(labyrinth[bb8X][bb8Y-1]==EMPTY ||(labyrinth[bb8X][bb8Y-1]=="🏠"))){  // rechts laufen
+                        direction = BACK;
+                        labyrinth[bb8X][bb8Y]=EMPTY;
+                        bb8Y = bb8Y-1;
+                        labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
+                        stepCounter++;
+                        printLabyrinth(labyrinth);
+                        try {
+                            Thread.sleep(700);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    else if((bb8X-1>0)&&(labyrinth[bb8X+1][bb8Y]==EMPTY ||(labyrinth[bb8X+1][bb8Y]=="🏠"))){ // geradeaus/ nach unten laufen
+                        labyrinth[bb8X][bb8Y]=EMPTY;
+                        bb8X = bb8X+1;
+                        labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
+                        stepCounter++;
+                        printLabyrinth(labyrinth);
+                        try {
+                            Thread.sleep(700);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    else if((bb8Y+1<yLength)&&(labyrinth[bb8X][bb8Y+1]==EMPTY || (labyrinth[bb8X][bb8Y+1]=="🏠"))){ // nach links laufen
+                        direction = STRAIGHT;
+                        labyrinth[bb8X][bb8Y]=EMPTY;
+                        bb8Y = bb8Y+1;
+                        labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
+                        stepCounter++;
+                        printLabyrinth(labyrinth);
+                        try {
+                            Thread.sleep(700);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+                    else{
+                        direction = LEFT;
+                        labyrinth[bb8X][bb8Y]=EMPTY;
+                        bb8X = bb8X-1;
+                        labyrinth[bb8X][bb8Y]=direction;
+                        route[bb8X][bb8Y]=direction;
+                        stepCounter++;
+                        printLabyrinth(labyrinth);
+                        try {
+                            Thread.sleep(700);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    }
+        }
+    }
+    System.out.println("BB8 hat es aus dem Labyrinth geschafft in "+stepCounter+" Schritten.\n");
+    System.out.println("So sah sein Weg aus: ");
+    printLabyrinth(route);
+    }
+    /**
+     * Nutzerauswahl des Labyrinths
+     */
+    public static String[][] labyrinthSelection(){
+        String[][] labyrinth1 = new String[][]{
+        {"⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️"},
+        {"⬛️", "⬜️", "⬜️", "⬜️", "⬜️", "⬜️", "⬜️", "⬜️", "⬛️"},
+        {"⬛️", "⬜️", "⬛️", "⬛️", "⬛️", "⬜️", "⬛️", "⬜️", "⬛️"},
+        {"⬛️", "⬜️", "⬜️", "⬜️", "⬛️", "⬜️", "⬛️", "⬜️", "⬛️"},
+        {"⬛️", "⬜️", "⬛️", "⬜️", "⬛️", "⬜️", "⬛️", "⬜️", "🏠"},
+        {"⬛️", "🤖", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️"}
         };
-        char labyrinth2[][]= new char[][]{
-        {'╔','═','═','═','═','╦','═','═','╗'},
-        {'║','×','×','×','×','║','×','×','A'},
-        {'║','×','║','║','×','×','×','×','║'},
-        {'║','×','×','╠','═','═','═','═','╣'},
-        {'B','×','×','║','×','×','×','×','║'},
-        {'║','║','×','║','×','║','×','║','║'},
-        {'║','×','×','×','×','║','×','×','║'},
-        {'║','×','×','×','×','×','×','×','║'},
-        {'╚','═','═','═','═','═','═','═','╝'}
+        String labyrinth2[][]= new String[][]{
+            {"⬛️","⬛️","⬛️","⬛️","⬛️","⬛️","⬛️","⬛️","⬛️"},
+            {"⬛️","⬜️","⬜️","⬜️","⬜️","⬛️","⬜️","⬜️","🏠"},
+            {"⬛️","⬜️","⬛️","⬛️","⬜️","⬜️","⬜️","⬜️","⬛️"},
+            {"⬛️","⬜️","⬜️","⬛️","⬛️","⬛️","⬛️","⬛️","⬛️"},
+            {"🤖","⬜️","⬜️","⬛️","⬜️","⬜️","⬜️","⬜️","⬛️"},
+            {"⬛️","⬛️","⬜️","⬛️","⬜️","⬛️","⬜️","⬛️","⬛️"},
+            {"⬛️","⬛️","⬜️","⬛️","⬜️","⬛️","⬜️","⬜️","⬛️"},
+            {"⬛️","⬜️","⬜️","⬜️","⬜️","⬜️","⬜️","⬜️","⬛️"},
+            {"⬛️","⬛️","⬛️","⬛️","⬛️","⬛️","⬛️","⬛️","⬛️"}
         };
-        char[][] labyrinth3 = new char[][]{
-        {'╔', '═', '═', '═', '╦', '═', '═', '═', '═', '═', '╗'},
-        {'║', '×', '×', '×', '║', '×', '×', '×', '×', '×', '║'},
-        {'║', '═', '×', '╔', '╝', '×', '║', '×', '║', '×', '║'},
-        {'║', '×', '×', '║', '×', '×', '║', '×', '║', '×', '║'},
-        {'║', '×', '×', '×', '×', '×', '║', '×', '║', '×', 'A'},
-        {'║', '×', '╔', '×', '║', '×', '║', '×', '×', '×', '║'},
-        {'║', '×', '║', '×', '╚', '═', '╣', '×', '║', '×', '║'},
-        {'║', '×', '║', '×', '×', '×', '║', '×', '║', '×', '║'},
-        {'B', '×', '╠', '═', '═', '×', '║', '×', '×', '×', '║'},
-        {'╚', '═', '╩', '/', '═', '═', '╩', '═', '═', '═', '╝'}
+        String[][] labyrinth3 = new String[][]{
+            {"⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️"},
+            {"⬛️", "⬜️", "⬜️", "⬜️", "⬛️", "⬜️", "⬜️", "⬜️", "⬜️", "⬜️", "⬛️"},
+            {"⬛️", "⬛️", "⬜️", "⬛️", "⬛️", "⬜️", "⬛️", "⬜️", "⬛️", "⬜️", "⬛️"},
+            {"⬛️", "⬜️", "⬜️", "⬛️", "⬜️", "⬜️", "⬛️", "⬜️", "⬛️", "⬜️", "⬛️"},
+            {"⬛️", "⬜️", "⬜️", "⬜️", "⬜️", "⬜️", "⬛️", "⬜️", "⬛️", "⬜️", "🏠"},
+            {"⬛️", "⬜️", "⬛️", "⬜️", "⬛️", "⬜️", "⬛️", "⬜️", "⬜️", "⬜️", "⬛️"},
+            {"⬛️", "⬜️", "⬛️", "⬜️", "⬛️", "⬛️", "⬛️", "⬜️", "⬛️", "⬜️", "⬛️"},
+            {"⬛️", "⬜️", "⬛️", "⬜️", "⬜️", "⬜️", "⬛️", "⬜️", "⬛️", "⬜️", "⬛️"},
+            {"🤖", "⬜️", "⬛️", "⬛️", "⬛️", "⬜️", "⬛️", "⬜️", "⬜️", "⬜️", "⬛️"},
+            {"⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️"}
         };
         int selectedLabyrinth;
 
         System.out.println("Welches Labyrinth 1,2 oder 3 soll BB2 durchlaufen?");
+        System.out.println( );
+        System.out.println("Labyrinth 1 )" );
+        printLabyrinth(labyrinth1);
+            System.out.println( );
+        System.out.println("Labyrinth 2 )" );
+        printLabyrinth(labyrinth2);
+            System.out.println( );
+        System.out.println("Labyrinth 3 )" );
+        printLabyrinth(labyrinth3);
         // Fehlererkennung bei der Nutzereingabe
         selectedLabyrinth = recognizeErrors();
         // Zurückgabe des ausgewählten Labyrinths
@@ -71,18 +353,30 @@ public class Labyrinth {
     }
 
     /**
-     * überprüft eine Eingabe des Nutzersn auf Fehler
-     * @return eine Ganzzahl
+     * Die Methode gameExplanation gibt die Erklärung des Spiels aus.
+     *
      *
      */
+    public static void gameExplanation(){
+        System.out.println("");
+        System.out.println("BB-8 möchte gerne nach Hause kommen muss aber jedoch durch eins der drei Labyrinthe durch.");
+        System.out.println("Um das zu schaffen verwentet er die Rechte-Hand-Regel.");
+        System.err.println("BB-8 wird nach dieser Strategie Schritt für Schritt gehen, so dass man seine Suche nachvollziehen kann.");
+        System.out.println("Sobald BB-8 das Ziel erreicht hat, zeigt er uns sein Weg in die Freiheit.");
+        System.out.println("");
+    }
+    /**
+       * erkennt Fehler bei der Nutzereingabe
+       *
+       */
     public static int recognizeErrors(){
         // auch hier muss ein StaticScanner Objekt erzeugt werden, um die Methode zu verwenden.
-          Scanner StaticScanner = new Scanner(System.in);
-          boolean validInput= false;
-          int drawNumber=0;
-          String drawRange = StaticScanner.nextLine();
+        Scanner StaticScanner = new Scanner(System.in);
+        boolean validInput= false;
+        int drawNumber=0;
+        String drawRange = StaticScanner.nextLine();
 
-          while(validInput!= true){
+        while(validInput!= true){
             // fängt ab, falls ein falscher Datentyp eingegeben wird.
             try {
                 drawNumber = Integer.parseInt(drawRange);
@@ -90,22 +384,58 @@ public class Labyrinth {
                 System.out.println("Die Eingabe ist keine Zahl. Bitte eine Zahl zwischen 1-3 eingeben.");
             }
             // Wenn klar ist, dass es eine Zahl ist, wird geprüft, ob sie zwischen 1-3 liegt.
-              if (drawNumber==1 || drawNumber ==2 || drawNumber==3) {
+            if (drawNumber==1 || drawNumber ==2 || drawNumber==3) {
                 validInput = true;
-              }
-              else{
+            }
+            else{
                 System.out.println("Ungültige Eingabe. Wähle eine Zahl zwischen 1-3.");
                 drawRange =StaticScanner.nextLine();
-              }
-          }
-       return drawNumber;
-      }
-      public static void printLabyrinth(char[][]labyrinth){
+            }
+        }
+    return drawNumber;
+    }
+    /**
+     * Ausgabe eines zweidimensionalen Arrays
+     * @param labyrinth
+     */
+    public static void printLabyrinth(String[][]labyrinth){
         for (int i = 0; i < labyrinth.length; i++) {
             for (int j = 0; j < labyrinth[i].length; j++) {
                 System.out.print(labyrinth[i][j]);
             }
             System.out.println();
         }
-      }
+        System.out.println();
+    }
+    /**
+     * Schreibt die Inhalte eines zwei dimensionalen Arrays in einen anderen über.
+     * @param labyrinth
+     */
+    public static String[][] copyLabyrinth(String[][]labyrinth){
+        String[][] copy =new String[labyrinth.length][labyrinth[0].length];
+        // kopiert das Labyrinth in den route-Array, in dem der Weg gespeichert wird.
+        for (int i = 0; i < labyrinth.length; i++) {
+            for (int j = 0; j < labyrinth[i].length; j++) {
+                copy[i][j]=labyrinth[i][j];
+            }
+        }
+        return copy;
+    }
+    /**
+     * Findet ein beliebig mitgegebenes Zeichen im Labyrinth
+     * @param labyrinth, searchedString
+     */
+    public static int[] findPosition(String[][] labyrinth, String searchedString){
+        int[] position = new int[2];
+                for (int i = 0; i < labyrinth.length; i++) {
+            for (int j = 0; j < labyrinth[i].length; j++) {
+                if(labyrinth[i][j]== searchedString){
+                    position[0]=i;
+                    position[1]=j;
+                    return position;
+                }
+            }
+        }
+        return position;
+    }
 }

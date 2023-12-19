@@ -1,16 +1,16 @@
 TODO:
-- [ ] Erläuterung des Spiels (Dominik)
-- [ ] Ausgabe der 3 möglichen Labyrinthe (Dominik, Iris, Aya)
-  - [ ] Nutzer darf eins aussuchen (Iris)
-  - [ ] Fehlererkennung (Iris)
+- [ ] ~~Erläuterung des Spiels (Dominik)~~
+- [ ] ~~Ausgabe der 3 möglichen Labyrinthe (Dominik, Iris, Aya)~~
+  - [ ]~~ Nutzer darf eins aussuchen (Iris)~~
+  - [ ] ~~Fehlererkennung (Iris)~~
   - [ ] Ausgabe von 2D / 3D Arrays (Iris)
 
 ### Methoden
-- [ ] Erläuterung des Spiels
-- [ ] Ausgabe der 3 möglichen Labyrinthe
-  - [ ] Nutzer darf eins aussuchen
-  - [ ] Fehlererkennung
-- [ ] Ausgabe von 2D / 3D Arrays
+- [ ] ~~Erläuterung des Spiels~~
+- [ ] ~~Ausgabe der 3 möglichen Labyrinthe~~
+  - [ ] ~~Nutzer darf eins aussuchen~~
+  - [ ] ~~Fehlererkennung~~
+- [ ] ~~Ausgabe von 2D / 3D Arrays~~
 - [ ] BB2 Schritte – Logik (Rechte Hand Regel)
   - [ ] Abspeicherung des Wegs auf der dritten Ebene
 - [ ] Ausgabe der Schritte im Frontend
