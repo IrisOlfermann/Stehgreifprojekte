@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class Labyrinth {
-      /**
+   /**
    * @param args
    * @authors Aya Akutsu, Dominik Kulak, Iris Olfermann
    */
@@ -13,7 +13,7 @@ public class Labyrinth {
 
         // Für die Eingabe vom Nutzer
         Scanner StaticScanner = new Scanner(System.in);
-
+        // Definition der Richtungen & Anfangs- und Endsymbol
         final String START ="🤖";
         final String END = "🏠";
         final String STRAIGHT ="⏩️";
@@ -21,10 +21,6 @@ public class Labyrinth {
         final String LEFT = "🔼";
         final String RIGHT = "🔽";
         final String EMPTY = "⬜️";
-        // damit können wir dann überprüfen, ob wir vor einer Wand stehen
-        //String walls = "╔═╗║╚╝╩╦╠╣";
-        //(walls.indexOf(labyrinth[bb8X][bb8Y]))!=-1
-        // überprüft, ob der Buchstabe A in Walls drinne ist, kann genutzt werden, um zu checken, ob vor uns eine Mauer ist.
 
         String[][] labyrinth = labyrinthSelection();
 
@@ -41,6 +37,10 @@ public class Labyrinth {
         int bb8Y = startPos[1];
 
         printLabyrinth(labyrinth);
+        /*
+        *hier fängt der BB8 mit dem Durchlauf des Labyrinths an
+        * Es wird für die vier möglichen Richtungen überprüft, wie er weiterlaufen kann
+         */
         while(!(bb8X==endPos[0] && bb8Y==endPos[1])){
             switch (direction) {
                 case STRAIGHT:
@@ -285,16 +285,13 @@ public class Labyrinth {
                     }
         }
     }
-    System.out.println("BB8 hat es aus dem Labyrinth geschafft in "+stepCounter+" Schritten.");
+    System.out.println("BB8 hat es aus dem Labyrinth geschafft in "+stepCounter+" Schritten.\n");
     System.out.println("So sah sein Weg aus: ");
     printLabyrinth(route);
     }
-    public static String[][]step(){
-         String[][] labyrinth = new String[0][1];
-         return labyrinth;
-
-    }
-    // Nutzerauswahl des Labyrinths
+    /**
+     * Nutzerauswahl des Labyrinths
+     */
     public static String[][] labyrinthSelection(){
         String[][] labyrinth1 = new String[][]{
         {"⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️", "⬛️"},
@@ -356,12 +353,10 @@ public class Labyrinth {
     }
 
     /**
-     * überprüft eine Eingabe des Nutzersn auf Fehler
-     * @return eine Ganzzahl
+     * Die Methode gameExplanation gibt die Erklärung des Spiels aus.
+     *
      *
      */
-
-     // Die Methode gameExplanation gibt die Erklärung des Spiels aus.
      public static void gameExplanation(){
         System.out.println("");
         System.out.println("BB-8 möchte gerne nach Hause kommen muss aber jedoch durch eins der drei Labyrinthe durch.");
@@ -370,7 +365,10 @@ public class Labyrinth {
         System.out.println("Sobald BB-8 das Ziel erreicht hat, zeigt er uns sein Weg in die Freiheit.");
         System.out.println("");
       }
-
+      /**
+       * erkennt Fehler bei der Nutzereingabe
+       *
+       */
     public static int recognizeErrors(){
         // auch hier muss ein StaticScanner Objekt erzeugt werden, um die Methode zu verwenden.
           Scanner StaticScanner = new Scanner(System.in);
@@ -396,6 +394,10 @@ public class Labyrinth {
           }
        return drawNumber;
       }
+    /**
+     * Ausgabe eines zweidimensionalen Arrays
+     * @param labyrinth
+     */
       public static void printLabyrinth(String[][]labyrinth){
         for (int i = 0; i < labyrinth.length; i++) {
             for (int j = 0; j < labyrinth[i].length; j++) {
@@ -405,6 +407,10 @@ public class Labyrinth {
         }
         System.out.println();
       }
+    /**
+     * Schreibt die Inhalte eines zwei dimensionalen Arrays in einen anderen über.
+     * @param labyrinth
+     */
       public static String[][] copyLabyrinth(String[][]labyrinth){
          String[][] copy =new String[labyrinth.length][labyrinth[0].length];
         // kopiert das Labyrinth in den route-Array, in dem der Weg gespeichert wird.
@@ -415,6 +421,10 @@ public class Labyrinth {
         }
         return copy;
       }
+    /**
+     * Findet ein beliebig mitgegebenes Zeichen im Labyrinth
+     * @param labyrinth, searchedString
+     */
       public static int[] findPosition(String[][] labyrinth, String searchedString){
         int[] position = new int[2];
                 for (int i = 0; i < labyrinth.length; i++) {
